@@ -1,0 +1,223 @@
+{
+  "format": "memory-relations-experiment-v1",
+  "status": "research-only",
+  "baseline_commit": "d64d296e57bc9c650a461805a991bd3b3a6bb499",
+  "classes": [
+    "complement",
+    "conflict",
+    "contextual",
+    "duplicate",
+    "supersede",
+    "temporary",
+    "uncertain"
+  ],
+  "source_of_classes": "src/dataset_recommender/agent/memory_relations.py:RELATIONS",
+  "schema_fields": [
+    "id",
+    "group_id",
+    "split",
+    "request",
+    "label",
+    "label_origin",
+    "related_ids",
+    "evidence_refs",
+    "phenomena"
+  ],
+  "request_fields": [
+    "candidate",
+    "existing",
+    "evidence",
+    "context"
+  ],
+  "label_origins": [
+    "construction",
+    "teacher_single",
+    "teacher_consensus",
+    "agent_review",
+    "human_anchor"
+  ],
+  "splits": [
+    "train",
+    "dev",
+    "calibration",
+    "heldout",
+    "ood",
+    "set"
+  ],
+  "schema_field_count": 9,
+  "source_v3": {
+    "mode": "author-shards",
+    "protocol_template": "data/source_protocol_v3.json",
+    "label_manual": "data/label_manual_v3.md",
+    "frozen_protocol_sha256": "d2394abb73c985a7bd2878b327d208040be773a5a5d14646a75b6151cbda5cc6",
+    "targets_only_not_accepted_counts": true,
+    "roots_by_split": {
+      "train": 240,
+      "dev": 40,
+      "calibration": 40,
+      "heldout": 40,
+      "ood": 40
+    },
+    "author_policy": "20 roots per author; 16 development authors use 15/2/3 or 15/3/2; two dedicated heldout and two dedicated OOD authors do not read development data",
+    "metadata": [
+      "root_id",
+      "domain",
+      "family",
+      "author",
+      "rationale",
+      "variant"
+    ],
+    "root_group_policy": "one root per group and one group per root; all descendants stay in the frozen split",
+    "unadjudicated_policy": "quarantine without changing semantic labels; author proxy labels are not independent teacher acceptance",
+    "input_audit": "reuse features.request_view/request_text; reject cross-split fingerprints, same-input label conflicts and exact duplicate inputs across roots; near-neighbor candidates require independent review",
+    "outputs": "train/dev/calibration only in trainable directory; heldout/OOD/quarantine/full audit in physically disjoint sealed directory; refuse existing output directories",
+    "legacy_default_unchanged": true,
+    "legacy_relabel": "explicit --legacy-relabel repairs temporary/uncertain distractor pair labels, records original/repaired labels, keeps original whole rows unchanged"
+  },
+  "main_comparison": {
+    "arms": [
+      "legacy-original",
+      "legacy-relabelled",
+      "new-adjudicated"
+    ],
+    "seeds": [
+      13,
+      20260919,
+      424242
+    ],
+    "max_steps": 400,
+    "effective_batch": 16,
+    "patience": 0,
+    "checkpoint_selection": "best-dev",
+    "selection_metric": "dev-loss",
+    "dev_weighting": "root_equal",
+    "dev_secondary": "row_loss",
+    "eval_every_steps": 50,
+    "max_length": 384,
+    "eval_splits_during_tuning": "none",
+    "same_budget_scope": "same optimizer updates and presented sample instances, not same tokens or independent roots",
+    "epoch_early_stopping": "8 epochs with early stopping is a separate later experiment, not this fixed-update comparison",
+    "risk_certification_goal": false
+  },
+  "calibration_v3": {
+    "protocol": "partitioned",
+    "api": "metrics.calibrate_partitioned(logits, labels, has_trigger, group_ids, roles, primary, *, stage='complete'); training CLI always stage='candidate'; legacy six-vector mathematical API stays compatible",
+    "default_training_stage": "candidate",
+    "roles": [
+      "prob",
+      "policy",
+      "audit"
+    ],
+    "role_field": "phenomena.calibration_role",
+    "primary_field": "phenomena.operating_primary",
+    "primary_unit": "pair",
+    "independent_unit": "semantic root; group_id fallback only for legacy rows without root metadata, never descendant rows or group aliases",
+    "primary_policy": "exactly one preselected primary per root in every role; never reselect after labels or predictions",
+    "prob": "fit temperature on prob roots only, root-equal; insufficient prob data is explicitly unfitted temperature=1 and threshold=null",
+    "policy": "select the first feasible grid threshold from one frozen primary per policy root only",
+    "candidate_artifact": "top-level threshold=null and threshold_feasible=false; selection.candidate_threshold is policy-only; audit.status=deferred with counts and bounds null",
+    "physical_inputs": "arm development files contain train/dev/calibration-prob/calibration-policy only; shared dev/prob/policy content hashes, members and labels across arms; audit is a separate calibration-audit pair file and disjoint from every development root",
+    "input_contract": "planned_manifest, metrics and scorer record training_input_contract.sha256_by_partition/root_ids_by_partition/row_counts with unit=semantic_root_not_descendant_rows and audit_visible=false",
+    "study_lock": "train --mode lock binds one pre-registered dev-only selected candidate, meta/weights SHA, classes, temperature, policy point and development lineage in one fixed new runs directory; coordinator must not rename study or create another lock to retry selection",
+    "audit_api": "metrics.audit_locked_partition(logits, labels, has_trigger, group_ids, roles, primary, *, temperature, candidate_threshold, point_feasible)",
+    "audit": "train --mode audit verifies commitment/artifact binding and exclusively writes audit-attempt before reading independent audit primaries; never refits temperature or reselects grid; risk and coverage one-sided CP bounds each alpha=.025; insufficient evidence yields top-level threshold=null in a new scorer, original artifact unchanged",
+    "audit_once": "one attempt per fixed study lock including failures; null candidate never opens/hashes/probes audit; no nine-run/size/recipe audits treated as a single certification",
+    "lock_boundary": "process commitment and file integrity, not remote-identity authentication or protection against malicious alternate studies; no human gold",
+    "minimum_zero_error_allow_groups": 368,
+    "target_allow_fraction": 0.6,
+    "synthetic_mix_is_user_distribution": false,
+    "certifies_set_risk": false,
+    "human_gold_available": false
+  },
+  "feature_boundary": "request text surface only: candidate/existing text+trigger and evidence source text; no ids, labels, provenance, group_id, split, teacher votes, tier/permanence metadata, or expected outputs",
+  "sizes": [
+    250,
+    500,
+    1000,
+    2000
+  ],
+  "seeds": [
+    13,
+    20260919,
+    424242
+  ],
+  "threads": 6,
+  "batch_size": 16,
+  "student_models": [
+    "majority",
+    "char-logreg",
+    "minilm-logreg",
+    "minilm-mlp"
+  ],
+  "embedding_model": "paraphrase-multilingual-MiniLM-L12-v2",
+  "embedding_dimension": 384,
+  "embedding_device": "cpu",
+  "allow_model_downloads": false,
+  "local_teacher": {
+    "base_url": "http://127.0.0.1:11434",
+    "model": "batiai/qwen3.8-27b:iq3",
+    "quantization": "IQ3_XXS",
+    "reported_family": "qwen35",
+    "base_version_verified": false,
+    "parallel": 1,
+    "num_ctx": 8192,
+    "thinking": false,
+    "pilot_limit": 28
+  },
+  "external_teacher_candidates": [
+    "deepseek-v4-flash",
+    "minimax-m3"
+  ],
+  "external_credentials": "environment only; never argv/files/logs; do not copy a chat credential",
+  "safety_metrics": {
+    "blocking_classes": [
+      "conflict",
+      "supersede",
+      "temporary",
+      "uncertain"
+    ],
+    "allowing_classes": [
+      "duplicate",
+      "complement",
+      "contextual"
+    ],
+    "contextual_requires_trigger": true,
+    "calibration_target_dangerous_allow": 0.01,
+    "calibration_min_coverage": 0.5,
+    "no_feasible_threshold_policy": "report no feasible point; do not force an operating threshold or claim readiness",
+    "promotion": "never in this experiment; independent human labels and production review absent"
+  },
+  "evaluation": {
+    "pair_and_set_separate": true,
+    "complete_set_sizes": [
+      0,
+      1,
+      8,
+      64,
+      65,
+      129
+    ],
+    "bootstrap_clusters": "group_id",
+    "bootstrap_samples": 500,
+    "confidence": 0.95,
+    "test_used_for_threshold_selection": false,
+    "latency_device": "cpu",
+    "human_gold_available": false
+  },
+  "interfaces": {
+    "schema": "canonical_request(request)->canonical dict (raw synthetic or desensitized shapes; identity dropped, permission bits ignored, tier/permanence optional metadata); load_rows(path)->list[dict]; validate_row(row)->None; materialize_request(request)->(candidate, existing, evidence, cfg); feature_view/features_from_request read only text/trigger/evidence text",
+    "training": "pair rows only (existing <=1; set/multi-rule rows excluded and counted); RelationScorer.classes equals spec classes; RelationScorer.predict_proba(requests)->numpy[n,7]; features.load_scorer(model_dir, device='cpu') is the only public loader, including finetune dispatch; train CLI --data --out --models --sizes --seeds --eval-splits none --calibration-protocol partitioned --calibration-stage candidate; finetune additionally --checkpoint-selection best-dev --selection-metric dev-loss --patience 0 --max-steps 400 --eval-every-steps 50 --max-length 384; dev-loss is root-equal with row-loss secondary, selected CPU state is restored before candidate calibration/export; train --mode lock --model-dir --lock-dir --study-id and --mode audit --lock-dir --data --out provide one independent audit attempt for one pre-registered dev-selected candidate; no group/root-leakage escape flag or audit/terminal hash/probe in candidate/none mode",
+    "adapter": "make_predictor(scorer, threshold=None) rejects None rather than silently using zero; callable(request)->five-field dict; metrics.pair_verdict is the only gate; no API fallback or top-k truncation; evaluate_sets reports all-attempt completion and correct-completed/N, raw classifier/pair/set/gated set separately and related/evidence references by role; primary_operating uses one preselected primary per root; default CLI requires numeric meta.threshold and strictly true threshold_feasible; explicit threshold requires --diagnostic; --oracle-aggregation reuses real adapter/production gate with proxy reference pair labels",
+    "teachers": "same attempt/record/repair ledger; legacy label/paraphrase uses full production projection, not a fair student-text comparison; export-blind --input --output --blind-dir --blind-map --teacher-id --teacher-provider --teacher-model --shard-size --seed --synthetic-only exports features.request_view with random ids and private map outside blind directory; import-agent-label --input --output --blind-input --blind-map --agent-run-id verifies real receipts, assigned independent teacher/run/input/protocol hashes and strict five fields/role references; missing/failed/disagreeing labels remain pending/null, not synthetic uncertain; export/import calls no API and usage/latency remain null; legacy credentials from environment only",
+    "challenge": "unchanged data/challenge.jsonl and data/set_challenge.jsonl, agent_review proxy labels; already exposed diagnostic regression data, never a new independent terminal test or checkpoint-selection source; manifest retains data and legacy spec hashes and binds the current compatible spec; batch merge differences remain phenomena.merge_policy"
+  },
+  "reporting": {
+    "separate_agreement_and_accuracy": true,
+    "construction_is_not_human_gold": true,
+    "pair_scores_do_not_certify_set_safety": true,
+    "failed_experiments_retained": true,
+    "no_private_conversation_data": true,
+    "output_directory": "runs/",
+    "report_directory_authorized_by_user": "<archive-root>/"
+  }
+}

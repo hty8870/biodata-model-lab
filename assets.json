@@ -1,0 +1,847 @@
+{
+  "schema": "biodata-release-assets-v1",
+  "repository": "hty8870/biodata-model-lab",
+  "tag": "v0.1.0",
+  "assets": {
+    "base-macbert-base.zip": {
+      "bytes": 383376508,
+      "sha256": "a057a6b2e1ace88ef50099c1f5586443417de4b978d7bdd14b2e58b9f56161f5",
+      "kind": "base",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/base-macbert-base.zip"
+    },
+    "base-minilm-multilingual.zip": {
+      "bytes": 437488105,
+      "sha256": "d03ee40a557aa85a107067299fcabe21cf2e738a8a9a5a40887ea0a21542ce3a",
+      "kind": "base",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/base-minilm-multilingual.zip"
+    },
+    "base-qwen3-0.6b.zip": {
+      "bytes": 1211476755,
+      "sha256": "9e4f9b4a0599cc5dfa5c535a42af5e3534ed0acf77995bd4aac9ccc737f578a0",
+      "kind": "base",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/base-qwen3-0.6b.zip"
+    },
+    "source-data.zip": {
+      "bytes": 424799961,
+      "sha256": "928ab0b8c2d5b5a1473def85e8a0ce97414fc6a33f7c6744074f8c605e37cee7",
+      "kind": "source-data",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/source-data.zip"
+    },
+    "weights-0090bbff35f017dfb865.zip": {
+      "bytes": 212715,
+      "sha256": "67aa8993cf0f8e17a676e2eb583c527b137a42f8a1bf088bb2d3ca07488bfc69",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-0090bbff35f017dfb865.zip"
+    },
+    "weights-00fe6894cc152e311dd0.zip": {
+      "bytes": 22981,
+      "sha256": "1b65e589397dd47acfbd7553db2f469e04822a5ce62fa79626cea0beb32ef66a",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-00fe6894cc152e311dd0.zip"
+    },
+    "weights-01d5032d95b8741b6688.zip": {
+      "bytes": 430773209,
+      "sha256": "d1e159d5192b19e3de31bb02c4fc399605f9279ea40f5673342c464392674130",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-01d5032d95b8741b6688.zip"
+    },
+    "weights-0462cb18aabbdca38b0b.zip": {
+      "bytes": 430817007,
+      "sha256": "8dd72e78d3d3141155f1c5fce278b427d0a7b7569d4a550929762ac81d16b10d",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-0462cb18aabbdca38b0b.zip"
+    },
+    "weights-04c9622338ba3c775707.zip": {
+      "bytes": 37503575,
+      "sha256": "67e5f3112150bc508084510c623c87b4ce31f713d49297a2b6e2afcb4be5b570",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-04c9622338ba3c775707.zip"
+    },
+    "weights-058756a81bea595bf7af.zip": {
+      "bytes": 430921993,
+      "sha256": "9307880c547ca112c90443fc43e21af024b4b85476716ce4ae02b7e53d0649fa",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-058756a81bea595bf7af.zip"
+    },
+    "weights-066260ab8dd952d62089.zip": {
+      "bytes": 5597,
+      "sha256": "83a709a8d3492b0f0bb0dbf67da768c72496ae178918535052cfc0130a37a2a8",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-066260ab8dd952d62089.zip"
+    },
+    "weights-09b7d9a754aa529419ad.zip": {
+      "bytes": 430784649,
+      "sha256": "040b942854630da10f6f5e3d1693c45a8e90d4f52f51e7cfbf2614c89b6acd9b",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-09b7d9a754aa529419ad.zip"
+    },
+    "weights-0b4529cdce5a1738e391.zip": {
+      "bytes": 430903785,
+      "sha256": "ba1ef4262b90c4a3e95bddff484f65348e9ebc7432e7948c242220b0c0da2a3b",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-0b4529cdce5a1738e391.zip"
+    },
+    "weights-0e57531f5b72b23c4485.zip": {
+      "bytes": 430812282,
+      "sha256": "f3f5b286b893b7866d54cac2b3c48664be51affc21fffd5d7d5dcd80ccdcea84",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-0e57531f5b72b23c4485.zip"
+    },
+    "weights-0e7d296ebadf98cb3cfd.zip": {
+      "bytes": 5387127,
+      "sha256": "4027a084ae489fa0e3c8b31cc0cce1f92ee69c91daf0790a1b079a66968ae3cb",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-0e7d296ebadf98cb3cfd.zip"
+    },
+    "weights-149326a0fa2b4cf83f6e.zip": {
+      "bytes": 5384956,
+      "sha256": "9a7d5364037b5bc872fe124b8cbf9066a37581814d5eb0a74f75bb32f20be1f9",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-149326a0fa2b4cf83f6e.zip"
+    },
+    "weights-14e7dc780fb4cfe65708.zip": {
+      "bytes": 430822951,
+      "sha256": "725a59f5ae43f441bd0538ac08e36b8b685be406ab6d081cef65cb84f8588791",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-14e7dc780fb4cfe65708.zip"
+    },
+    "weights-19871d13a93871c29032.zip": {
+      "bytes": 23624,
+      "sha256": "42560deee735a989feab039b47ce2d6ed619977faa722d142724a3ecdc627d28",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-19871d13a93871c29032.zip"
+    },
+    "weights-1bf862c2f8e96d30bc9b.zip": {
+      "bytes": 213301,
+      "sha256": "ed91d7dfcce9a49d0c96e4df875b3f6fc37c5488e5ab455c21ecd91ba84bfcc4",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-1bf862c2f8e96d30bc9b.zip"
+    },
+    "weights-1ece2ee2b4e613f133ec.zip": {
+      "bytes": 23432,
+      "sha256": "310c2f43775d82ca82c974e5da16f976a0581c4e6d229338a9e4a5650ae0d2ef",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-1ece2ee2b4e613f133ec.zip"
+    },
+    "weights-1f896da16da06fd10ff4.zip": {
+      "bytes": 15934,
+      "sha256": "9bce8251a4de52fab0e3b5c48e223c7c33fef75b7c8be88ebb55949c925b0243",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-1f896da16da06fd10ff4.zip"
+    },
+    "weights-1fdfa2f8b071bc1177df.zip": {
+      "bytes": 22964,
+      "sha256": "7863beecf718805c526571b18354daf495ad2814605ca85c0251eba5080fb45d",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-1fdfa2f8b071bc1177df.zip"
+    },
+    "weights-20361395c003cc8e7416.zip": {
+      "bytes": 430920942,
+      "sha256": "13407cd6bf5431d4e47b924120bc36f5c7f4c848d834b45cd5655e0ecc1f38a1",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-20361395c003cc8e7416.zip"
+    },
+    "weights-2195d8b125a80f83b525.zip": {
+      "bytes": 430806912,
+      "sha256": "2b9297fbb2b74d604f48c08dde04a1ec30056b95fdf3c3e2cb12e86f45f7dac5",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-2195d8b125a80f83b525.zip"
+    },
+    "weights-224f9592f146cc765bfd.zip": {
+      "bytes": 430922624,
+      "sha256": "ad38c7e0854328ad2ffde7ba184c11849e9f55143bbb8bce084d40a838dec4d5",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-224f9592f146cc765bfd.zip"
+    },
+    "weights-2846c6a0790a5ddacce1.zip": {
+      "bytes": 430831472,
+      "sha256": "9eb483ee505318159784c38a5321bc00620ab76f2581866cac637a24bfa519fd",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-2846c6a0790a5ddacce1.zip"
+    },
+    "weights-2854ad46e1c5de0fcf43.zip": {
+      "bytes": 430791783,
+      "sha256": "9ec2665633e4eadb423832075a9bf7478c630102daffb44774c87bfa311cb8a0",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-2854ad46e1c5de0fcf43.zip"
+    },
+    "weights-2861ed311f3a15bc4425.zip": {
+      "bytes": 159378,
+      "sha256": "fdd170c26b885d6da144624fd2846644cef3e25d7d6252bdea00f9510f59a605",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-2861ed311f3a15bc4425.zip"
+    },
+    "weights-28990f484ca9273653d9.zip": {
+      "bytes": 187170,
+      "sha256": "e010069d07c0516fa0e51199c5bd0aef1bd1bacc5cfc635b8090249623eea238",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-28990f484ca9273653d9.zip"
+    },
+    "weights-2c16483648e559f58a3d.zip": {
+      "bytes": 5386257,
+      "sha256": "4f8a96ca20299b68abb299fe7eeee748c41987c60edbbeff24f6691301d6146b",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-2c16483648e559f58a3d.zip"
+    },
+    "weights-2cfebc076cbbc07fee1f.zip": {
+      "bytes": 172667,
+      "sha256": "a594d5935b6b972628849eafb6caab3766ba98e97f1e25b807bc5e57d664b018",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-2cfebc076cbbc07fee1f.zip"
+    },
+    "weights-349597f26bd78b9b2e5a.zip": {
+      "bytes": 430765444,
+      "sha256": "bcbcfa1f238bbb30402d60a25d72a88b3739d0d0c0e5337d40b61ca426fb97dd",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-349597f26bd78b9b2e5a.zip"
+    },
+    "weights-3703d9f8c568fd0ec69c.zip": {
+      "bytes": 430922001,
+      "sha256": "b46af762b6c2765b23a5554b914a799e883de44af92f86cf69724e10d4228afd",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-3703d9f8c568fd0ec69c.zip"
+    },
+    "weights-37d4fd527952843ca85d.zip": {
+      "bytes": 430886824,
+      "sha256": "952069343fc07d3e2b87c22fb889c258fef75f26b3b93a913b010f471a20a6ae",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-37d4fd527952843ca85d.zip"
+    },
+    "weights-39ea8186002d217bccc7.zip": {
+      "bytes": 274406,
+      "sha256": "2b5ca7f6213c1c87e3bee9d27826038dccdd75d71e0b856dd8599a63a9c3b06c",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-39ea8186002d217bccc7.zip"
+    },
+    "weights-3c856cc108c0c7457333.zip": {
+      "bytes": 83828,
+      "sha256": "c18e13bf71240994aac44fb09e5420c5f81f518a9d361cbb21d908b21edf87d7",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-3c856cc108c0c7457333.zip"
+    },
+    "weights-41ade43f80386fc8d886.zip": {
+      "bytes": 37507757,
+      "sha256": "a3c023c2b62871a3f150cd882486b73094aae1bffc2c7f97c35cfef1fb81682f",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-41ade43f80386fc8d886.zip"
+    },
+    "weights-41b5c16f428f6f4a5831.zip": {
+      "bytes": 430826056,
+      "sha256": "420ad0c493349b1c0d2c5e9390e37e715eea916c709c78969ab7b022076b8f2d",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-41b5c16f428f6f4a5831.zip"
+    },
+    "weights-43cc74e762ce1853b3eb.zip": {
+      "bytes": 37515783,
+      "sha256": "b2ff1379497c4f352ab0e95cbce41667bbc264e7a0ef60dbb972917f8abb4c8f",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-43cc74e762ce1853b3eb.zip"
+    },
+    "weights-45a89944e11c4fb7bf21.zip": {
+      "bytes": 23519,
+      "sha256": "7d2544811cf66c4d75618b99c9972d48f2c274ab99198bf981b408173891ad69",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-45a89944e11c4fb7bf21.zip"
+    },
+    "weights-460c863157ae1da5c8af.zip": {
+      "bytes": 430818724,
+      "sha256": "fae8bbd87923f78c47a917ab7d9ffc4ce1850dd3cb5767068abd3aaec947a788",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-460c863157ae1da5c8af.zip"
+    },
+    "weights-46ca465173fa058c77a5.zip": {
+      "bytes": 212565,
+      "sha256": "9347bf3f3f39b41af129329f0fffc2fd9dee0913aa40c68f53f1fbb996a38419",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-46ca465173fa058c77a5.zip"
+    },
+    "weights-48aff7180d7202b44e71.zip": {
+      "bytes": 430811425,
+      "sha256": "41bf5526b131e2b233d6474f889359390dc21555ab919c01d407126e43be7d45",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-48aff7180d7202b44e71.zip"
+    },
+    "weights-492b70fc9a54cc84f98e.zip": {
+      "bytes": 430923898,
+      "sha256": "5fc861bb1a17b80a626b0663c4e1a2994f918e3f79eba8e3876b1f2ba3edc968",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-492b70fc9a54cc84f98e.zip"
+    },
+    "weights-4cafe4120b78d8f1fc79.zip": {
+      "bytes": 5389590,
+      "sha256": "38b8eebf12048cbeeaf7b81b2cba488a2410b9b6c61b7e9450a7121c9182e5c0",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-4cafe4120b78d8f1fc79.zip"
+    },
+    "weights-4ecd5cd960fd06ece567.zip": {
+      "bytes": 37503134,
+      "sha256": "4e5cd3a021bcad7c6ffafcf8b0726221ea67d7b109455563f3f6b5c67ce8b4c8",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-4ecd5cd960fd06ece567.zip"
+    },
+    "weights-50134c91b218db79359f.zip": {
+      "bytes": 430785963,
+      "sha256": "e39bde96ba3da689f1a9c9f47012199b4f1968dabbd78d834d5565407e21faf4",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-50134c91b218db79359f.zip"
+    },
+    "weights-510e29a9613a4c1d5e9c.zip": {
+      "bytes": 430774421,
+      "sha256": "623354dc83a1ff5bc6c6c03f4b5cfab5b6734ba740e4884d2e92f3043d265df7",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-510e29a9613a4c1d5e9c.zip"
+    },
+    "weights-5255086501152dd92f09.zip": {
+      "bytes": 110224,
+      "sha256": "ef017aac99b0d907d8fc6acef790759e8e1d1bcd46607e639ad90bafed803e7a",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-5255086501152dd92f09.zip"
+    },
+    "weights-54ad2d4f649b696b51f9.zip": {
+      "bytes": 158305,
+      "sha256": "ac130afadb9f5bc3da173080f7d32fcb2fc39c50ecf10f8531161558448815ad",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-54ad2d4f649b696b51f9.zip"
+    },
+    "weights-5500ba163e6ff9f99de8.zip": {
+      "bytes": 211277,
+      "sha256": "9c56a6d719c53047263799ddbf7a43aac80f518fac0a6bd07a32ffb669f43139",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-5500ba163e6ff9f99de8.zip"
+    },
+    "weights-5565c6fe4697d4fac512.zip": {
+      "bytes": 212652,
+      "sha256": "0ebab458b847c84c970a8623eb1d3cd650d8e53b0ae6bbd49ea12382f3ca489b",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-5565c6fe4697d4fac512.zip"
+    },
+    "weights-557328066d3bb109f4db.zip": {
+      "bytes": 430825082,
+      "sha256": "aae88769ac468a6e999779a2c27e803f66a8f4c8ff3455f59fe2d51ce86e98fe",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-557328066d3bb109f4db.zip"
+    },
+    "weights-558cb4e1a658e7606ee4.zip": {
+      "bytes": 23511,
+      "sha256": "f80af9ea977c574f1f6afe27622557c72d0053e32483f76c9caa306162f4303a",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-558cb4e1a658e7606ee4.zip"
+    },
+    "weights-55c8e6a74d4ad6cfb00a.zip": {
+      "bytes": 2025440,
+      "sha256": "0ef817c2b57ed365ff1a91af807a4bcce8cae8c3a6894b246408b35d92217738",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-55c8e6a74d4ad6cfb00a.zip"
+    },
+    "weights-5689114aaca5d2e6471f.zip": {
+      "bytes": 5387624,
+      "sha256": "1dd8916c69e598a8c107a7b76f11a6aa9c68cbc9268ffb1c4b3f1ec0c15968f2",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-5689114aaca5d2e6471f.zip"
+    },
+    "weights-579a586fca894092d920.zip": {
+      "bytes": 490706,
+      "sha256": "0b97139967d3c851390cc39b61c5268096fac871fb5edf9573565ff13266a3b1",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-579a586fca894092d920.zip"
+    },
+    "weights-5ac8322406bb6be9f6e8.zip": {
+      "bytes": 430778412,
+      "sha256": "6859f1c1667529aed4567aa091fe4d9621046b9f9d8d8d229bcc7257338e4ddf",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-5ac8322406bb6be9f6e8.zip"
+    },
+    "weights-5bb1bb35486c4c88922a.zip": {
+      "bytes": 430773990,
+      "sha256": "724b6c04e7bce0450a6ae5754e217602c7f9f9eaa1a9b1c8fc96363ca3bfc1a4",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-5bb1bb35486c4c88922a.zip"
+    },
+    "weights-5eccc0d3ad1858282672.zip": {
+      "bytes": 430785864,
+      "sha256": "02d0144c35ce2064d1378406bd586b3b93a8a20728515ecb26e0e557f393359b",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-5eccc0d3ad1858282672.zip"
+    },
+    "weights-5f902adf25bb4192f207.zip": {
+      "bytes": 1561098,
+      "sha256": "93e805d704e6c80a1e1a20ab13d5bf4d1c5d4d0d0571b69f7f2e2208ae959b30",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-5f902adf25bb4192f207.zip"
+    },
+    "weights-602d71419f6f512fbf28.zip": {
+      "bytes": 279557,
+      "sha256": "63349974b147b6a738b30c86e516b831bdd3686a018708e44d488dd250279c18",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-602d71419f6f512fbf28.zip"
+    },
+    "weights-65a894cf81c0f65ef6e2.zip": {
+      "bytes": 430806711,
+      "sha256": "0973da3abc3ab2b0ee97887b82a0d940cc0e0fcccbef632d8d2fd06d6e438c5b",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-65a894cf81c0f65ef6e2.zip"
+    },
+    "weights-688ffa1301620129a1ce.zip": {
+      "bytes": 5465,
+      "sha256": "3c8e664f0edfda30e861806df6a2c8d7fef45c6eadadded5a50773028c92bb3d",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-688ffa1301620129a1ce.zip"
+    },
+    "weights-6ae4714d6b98a82ea251.zip": {
+      "bytes": 37511880,
+      "sha256": "16f4665ef213f351039f60be011d2b24cd3df05b452e717e96531513ec63a2f8",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-6ae4714d6b98a82ea251.zip"
+    },
+    "weights-6b5b9479deebbabf7357.zip": {
+      "bytes": 212649,
+      "sha256": "cbdeea83fa46c515e96892a5b8c8eea3f6d26ad599608ff71e326b22f130451a",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-6b5b9479deebbabf7357.zip"
+    },
+    "weights-6c52b61c56a1269eaccb.zip": {
+      "bytes": 430785240,
+      "sha256": "2cda70e47d57cc8a4f6d3d3a35a6a908fcb018f2a148ade3b8392e2ef5828166",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-6c52b61c56a1269eaccb.zip"
+    },
+    "weights-6d935d47685719f86fa0.zip": {
+      "bytes": 37511556,
+      "sha256": "953da5c4be50b02cb85f11ed4bfcb15f2bf07811f28f316eb39d79ba50689037",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-6d935d47685719f86fa0.zip"
+    },
+    "weights-6e5e2bee0fda7dc4df41.zip": {
+      "bytes": 23455,
+      "sha256": "059bee29a9f3a405e642863ae0e2d8feb51c5c4048d1370b43e0be6076f2c828",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-6e5e2bee0fda7dc4df41.zip"
+    },
+    "weights-6e7d774457485da56a8d.zip": {
+      "bytes": 430819003,
+      "sha256": "025f9c1d9908245740db19d817ba193628a36caa600bff8b8a801132e1f31cec",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-6e7d774457485da56a8d.zip"
+    },
+    "weights-6f098af68417f543a5b5.zip": {
+      "bytes": 37515453,
+      "sha256": "72f0f6dbc59c4519067693e8f83c4d71fcb65532643a094a704b8714e2d56c19",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-6f098af68417f543a5b5.zip"
+    },
+    "weights-710dacd8df417e4263cc.zip": {
+      "bytes": 37514279,
+      "sha256": "41dfc00206f006c55601a099fec507e081e73bfa9261028a416a840838e46217",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-710dacd8df417e4263cc.zip"
+    },
+    "weights-756f5e7867f66336c240.zip": {
+      "bytes": 37509671,
+      "sha256": "ec589b2fb3acfa9ed81526972cebb85e91b235381b2fd6193b485090907791b2",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-756f5e7867f66336c240.zip"
+    },
+    "weights-7615c2156c1eae17d134.zip": {
+      "bytes": 378720813,
+      "sha256": "e4e3d55a27227cd53ef1d91e4fb16b011b6a1c29281f569cb07e0d48124b9315",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-7615c2156c1eae17d134.zip"
+    },
+    "weights-76d34db2e104a2bc0390.zip": {
+      "bytes": 86447,
+      "sha256": "fbe520e7d1e89c7fc440283e5bf4c3f189f5babf37167548a0f7dba5d15f5c93",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-76d34db2e104a2bc0390.zip"
+    },
+    "weights-78fabccb63aeeeed866e.zip": {
+      "bytes": 5390630,
+      "sha256": "3e8134638bfeb76d9476fe13842f2523a9c75433860e6eb49c76245c33b0a18c",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-78fabccb63aeeeed866e.zip"
+    },
+    "weights-7b65d7a5955e3d7605fd.zip": {
+      "bytes": 1560983,
+      "sha256": "0a0257c8cd7b9df35deee5759ada46db8848b89427d11348b16fcaddcc2f0127",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-7b65d7a5955e3d7605fd.zip"
+    },
+    "weights-803324695119f91d6c7a.zip": {
+      "bytes": 162226,
+      "sha256": "cfca8f900d5fa55902f44dae9f28bc98b5c179fc74d7c5a37062a894a5a8deda",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-803324695119f91d6c7a.zip"
+    },
+    "weights-82450a35156c1f3b67b1.zip": {
+      "bytes": 4030764,
+      "sha256": "fa2e43a9ae9c7648b113ab09cce82825d73965de231856e75c5a6803c80f2876",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-82450a35156c1f3b67b1.zip"
+    },
+    "weights-83f4c20a46f224df4671.zip": {
+      "bytes": 488267,
+      "sha256": "b14f291041002fc99557de331cb9c4d2075db157e5d6f91585de52cf87806953",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-83f4c20a46f224df4671.zip"
+    },
+    "weights-84d2fdf8e2290387cc7a.zip": {
+      "bytes": 15909,
+      "sha256": "3dc9be92faa2d50d68684783d68959e058159ea1e4ed9fa02a4fc748088245cf",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-84d2fdf8e2290387cc7a.zip"
+    },
+    "weights-8575e05968740c052500.zip": {
+      "bytes": 430815372,
+      "sha256": "ed1605587fd576c822d3b54354e57771c25d0861015897c14f4adc2d398e542c",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-8575e05968740c052500.zip"
+    },
+    "weights-874928dd73001f567404.zip": {
+      "bytes": 5599,
+      "sha256": "85e1d1d8f30ac6e05033d5d0b1535f05f86f3d452feb365940b13f6893faa8f8",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-874928dd73001f567404.zip"
+    },
+    "weights-907925d7b2a6606bad6b.zip": {
+      "bytes": 430922403,
+      "sha256": "515a3291e687c222534d8d990eacd0f0bfc22f46127caaeb67bbd77c3454f1d6",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-907925d7b2a6606bad6b.zip"
+    },
+    "weights-907d811154f47ae2a4c9.zip": {
+      "bytes": 37509646,
+      "sha256": "217a5ab0a378595b0717fde6920825b9245b4d3f78f3eb78605f8cf86494d54e",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-907d811154f47ae2a4c9.zip"
+    },
+    "weights-92c11e499792c5d0a279.zip": {
+      "bytes": 430785973,
+      "sha256": "0dd6d6344ef76eb0554bdff5527aa7b6db84f8613b4a179bcb86a2132a4be43d",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-92c11e499792c5d0a279.zip"
+    },
+    "weights-9334c9764291cbde0aaf.zip": {
+      "bytes": 5386791,
+      "sha256": "7178d4ef4c22feb44fccc96304dbfbc30f35a6687e27930494e9c1b0b021bf3b",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-9334c9764291cbde0aaf.zip"
+    },
+    "weights-977086737e14624107e6.zip": {
+      "bytes": 23510,
+      "sha256": "0c181d1db371ef2af407c606e3f5c6ed7ab6a5d24cc55d8a5dca500c2d087c45",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-977086737e14624107e6.zip"
+    },
+    "weights-9906bbb778cf4b93c947.zip": {
+      "bytes": 5386717,
+      "sha256": "b6f2cf11f1a9fa6c53346310da933685e1c846f6622850d561d670225344b78b",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-9906bbb778cf4b93c947.zip"
+    },
+    "weights-9bf43d42880aeac4d9df.zip": {
+      "bytes": 430819053,
+      "sha256": "ee767ae6b2e7d20fcf4cb8999a57acb84f65d0aa552fe3babd93deea1c31789d",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-9bf43d42880aeac4d9df.zip"
+    },
+    "weights-9ce4628c3c1f91a61e8f.zip": {
+      "bytes": 302645,
+      "sha256": "de994919aa71e36cb1c6e04743d784fef59e2bf7b0ed5be155f69a7e763a4eb3",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-9ce4628c3c1f91a61e8f.zip"
+    },
+    "weights-a130a587ae90cf9dde09.zip": {
+      "bytes": 15899,
+      "sha256": "e8414e1d0c2600738a60935c1028c1b1a381c6770888a1531f0a463cd934ae62",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-a130a587ae90cf9dde09.zip"
+    },
+    "weights-a2aa706b42dd1a1d02c3.zip": {
+      "bytes": 84618,
+      "sha256": "3eb75972e835efb5f55514282b460cf658d7f99913eaabc49cefad6cfb8e8fc0",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-a2aa706b42dd1a1d02c3.zip"
+    },
+    "weights-a37beba5186df90fe77f.zip": {
+      "bytes": 211666,
+      "sha256": "a570bc0ec9da137b12dd840532af0344c5b5740d1dfe2e981a0d553ade1aba85",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-a37beba5186df90fe77f.zip"
+    },
+    "weights-a3b92894bed1362f5b05.zip": {
+      "bytes": 213238,
+      "sha256": "29748a7e5d7c81f336fe756dc97f1b5c92890ed7377045626f016e6d0ce30ee5",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-a3b92894bed1362f5b05.zip"
+    },
+    "weights-a559db4bc304b6af30c4.zip": {
+      "bytes": 23456,
+      "sha256": "e58cc7526d11021b6e6fdd64916bed6ef0ef774236e78a0166f8e4451145de8e",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-a559db4bc304b6af30c4.zip"
+    },
+    "weights-a57c1c4c7e1a4f1710a8.zip": {
+      "bytes": 37478961,
+      "sha256": "a0716fefe2fa4e46e18ed2fc2cdcb994d1ad474a510661aa911b49e64a92e148",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-a57c1c4c7e1a4f1710a8.zip"
+    },
+    "weights-a5f5262d427e0892bf17.zip": {
+      "bytes": 178848,
+      "sha256": "d746529184b5cdb8ac2580c09f48dcb09cbd782bc7af60a85dc30ae54de12c7d",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-a5f5262d427e0892bf17.zip"
+    },
+    "weights-a74295b6977f1b1b075c.zip": {
+      "bytes": 430792048,
+      "sha256": "bf735b5289262fbcd6c482359aad788f78fcbf3af3cdae840f3a2e2a113c7441",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-a74295b6977f1b1b075c.zip"
+    },
+    "weights-ab26f8ad07ec48c815cf.zip": {
+      "bytes": 430926070,
+      "sha256": "5ff4a71af2d900900df937e6704b6bef7d80a422f9358845edb43d7ce6b06ced",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-ab26f8ad07ec48c815cf.zip"
+    },
+    "weights-abd03be4587eb0f66ad5.zip": {
+      "bytes": 430899117,
+      "sha256": "b8ad06d0703285baf9e9bdb25f68a5277959df7fc3f58b7d686fd96fd9e21f0d",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-abd03be4587eb0f66ad5.zip"
+    },
+    "weights-ad771095bb02710f188e.zip": {
+      "bytes": 5968627,
+      "sha256": "8c6d34d6c095d783aa698a5933fa8ffc5e18694e99dd362239c51da0a25a0535",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-ad771095bb02710f188e.zip"
+    },
+    "weights-b05e207619d56cd3c9d2.zip": {
+      "bytes": 430817726,
+      "sha256": "71b7b1bfb4e6041094f0ed7a7318a6afe8939168c67ac2ec400567d3754e602d",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-b05e207619d56cd3c9d2.zip"
+    },
+    "weights-b21038f5ba6e909291af.zip": {
+      "bytes": 37510024,
+      "sha256": "91c5c3794b0522dfbaa2e78f20b72225343fd10c836c2dd1c424636a2375776e",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-b21038f5ba6e909291af.zip"
+    },
+    "weights-b6061cdbde346da5b199.zip": {
+      "bytes": 430783774,
+      "sha256": "d8da2e10edb47121e92643a8cd8248beaf24784737399869658a1bcef320eb0b",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-b6061cdbde346da5b199.zip"
+    },
+    "weights-b6f86d7790a28064b410.zip": {
+      "bytes": 430810753,
+      "sha256": "4f540ad6cbddd11c8f842c2b78ab8111f271f5244679fc752bb321c010f4eeb8",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-b6f86d7790a28064b410.zip"
+    },
+    "weights-b8ae65d716d264ffc34f.zip": {
+      "bytes": 430823275,
+      "sha256": "1ad165b7c1a10277e6710e72c79e11519ce66fc3388f9b2a5539d411134b90b8",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-b8ae65d716d264ffc34f.zip"
+    },
+    "weights-b93a331beb79463371cb.zip": {
+      "bytes": 5395044,
+      "sha256": "d9ac8e057341d8f313680b520fcd1801f6681168d47e023a65fda1607e20ef86",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-b93a331beb79463371cb.zip"
+    },
+    "weights-c341b3e30ce16fa19fd5.zip": {
+      "bytes": 5391743,
+      "sha256": "12a1cccab84bb3209027b2cf7e34a2f79ed1152fd97d418a9400fe003aa26fe8",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-c341b3e30ce16fa19fd5.zip"
+    },
+    "weights-c4f84789bae26768103a.zip": {
+      "bytes": 5600,
+      "sha256": "e90754bd365b1b404389043a26c5774636c41db184cfa6a5d392dd4129662cf1",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-c4f84789bae26768103a.zip"
+    },
+    "weights-c5eabc2b494bba6e416e.zip": {
+      "bytes": 37516107,
+      "sha256": "89c1b1bd854fe548e685f04a3cb32b66cdcd0bff6209e0c02945b11cb8a56de3",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-c5eabc2b494bba6e416e.zip"
+    },
+    "weights-cccdb31312a35843b762.zip": {
+      "bytes": 378722412,
+      "sha256": "f0e49346ba36bbffde4f12fa4dc60334a6bda6e29b5e0501da6c4e896d327ca7",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-cccdb31312a35843b762.zip"
+    },
+    "weights-cde9689fd335d86edafe.zip": {
+      "bytes": 430920033,
+      "sha256": "c26ed063b46195d82a7c2f1bf552446a45941e00ba086528c995001ff24c33b1",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-cde9689fd335d86edafe.zip"
+    },
+    "weights-ce25cec308f256e2fffd.zip": {
+      "bytes": 430785372,
+      "sha256": "5bc35a3ee2c350bd735990cd7477813d326c39c0b0713a4f9f2f80acf20e3376",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-ce25cec308f256e2fffd.zip"
+    },
+    "weights-cf65be34ac2464982c21.zip": {
+      "bytes": 494905,
+      "sha256": "b4840b6052753a3af1c4fcc7e0fc43102ff2d68b72babc03e7f0fc64637c0350",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-cf65be34ac2464982c21.zip"
+    },
+    "weights-d1410235d7600084dc6b.zip": {
+      "bytes": 22962,
+      "sha256": "69ed3a10f82f3c15b318f5dc6b6f1946828eb856d941d499cbfea4e648821b47",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-d1410235d7600084dc6b.zip"
+    },
+    "weights-d14792dcde4c0ddb838f.zip": {
+      "bytes": 430900601,
+      "sha256": "b4393f6c1acd9e5424d602d2f1d169985a59183b7b77b4917f3c17c87715c70a",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-d14792dcde4c0ddb838f.zip"
+    },
+    "weights-d237b0739b2db22367ff.zip": {
+      "bytes": 5970008,
+      "sha256": "0d8f272f14d43a245fd781e2001e1e47200ea0e11d2f861f7e7366cb612af61f",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-d237b0739b2db22367ff.zip"
+    },
+    "weights-d39c1ebc9864ae44a6ca.zip": {
+      "bytes": 276754,
+      "sha256": "b2101b506f30e251e3152bca403ff9fd392997a767ad287aaf39b00c7f35fb10",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-d39c1ebc9864ae44a6ca.zip"
+    },
+    "weights-d3c0dc4eb66adce56a47.zip": {
+      "bytes": 37521889,
+      "sha256": "02f6b0dc9cd4ec1004c6a8110bbdec5ddf4f889c72929aec7017357fbd5b831e",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-d3c0dc4eb66adce56a47.zip"
+    },
+    "weights-d48af403b020a0c2ec11.zip": {
+      "bytes": 430923421,
+      "sha256": "679b9057e4e32f495a9a484c1e29338e8cc8ebf68972d44813736b901b82e499",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-d48af403b020a0c2ec11.zip"
+    },
+    "weights-d4a26173c01447436fb5.zip": {
+      "bytes": 110550,
+      "sha256": "8d8c80b02351f44bc27d8817a7fc26add3a236468f71fd71192b75e2c4e9429f",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-d4a26173c01447436fb5.zip"
+    },
+    "weights-d4fb9cf766927bcd5168.zip": {
+      "bytes": 430822956,
+      "sha256": "a64856bba85b6883eecac590098a30a74c60461782a725cea8d0536c15ecd525",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-d4fb9cf766927bcd5168.zip"
+    },
+    "weights-d664ab39f2c8fc9d4400.zip": {
+      "bytes": 430807690,
+      "sha256": "a24f1ed4d3e4811f1a7740e172571987d99ff5e9219a21a329c52a6c48120445",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-d664ab39f2c8fc9d4400.zip"
+    },
+    "weights-d6717a6bde987d328e86.zip": {
+      "bytes": 23616,
+      "sha256": "1af9e7578ad98f7eebef23bd26f97d076cbfb28a4454e7c94bda2a6695ca9118",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-d6717a6bde987d328e86.zip"
+    },
+    "weights-d98dcedcfe9bb5610615.zip": {
+      "bytes": 187652,
+      "sha256": "ac4dd682abd6481baa8c36588049c22cfe4ee466e02629d6ae5fe1eb90b212fe",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-d98dcedcfe9bb5610615.zip"
+    },
+    "weights-dbd81224347e4cc6858a.zip": {
+      "bytes": 213339,
+      "sha256": "147e8e4f6ea617b64747a09831de12ccdd9660840125ee1c3733adb9dff8830a",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-dbd81224347e4cc6858a.zip"
+    },
+    "weights-e11bb2e44cc0997626e2.zip": {
+      "bytes": 5390820,
+      "sha256": "8323feda3a9da75b33d5cc4d318641826415006dc26a6b57d8bf077ea09e0d0e",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-e11bb2e44cc0997626e2.zip"
+    },
+    "weights-e1312ab592589d52ce68.zip": {
+      "bytes": 213052,
+      "sha256": "d2198c6d9587e01d55e819bc9b824116ab93feb92940533fd9503327c6168828",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-e1312ab592589d52ce68.zip"
+    },
+    "weights-e193c8adecec92abc978.zip": {
+      "bytes": 23631,
+      "sha256": "d60a03621fbaa13c77e4e02c0c7027d02d07f219e62ae9964edb00cdf292db67",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-e193c8adecec92abc978.zip"
+    },
+    "weights-e396a387cdb9b31f3277.zip": {
+      "bytes": 430923083,
+      "sha256": "2963bcd86521d5a1b8ea96cdaf2a7b76a6debc79902c16138b55242aafcd5ffc",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-e396a387cdb9b31f3277.zip"
+    },
+    "weights-e3c561806bdb593b975c.zip": {
+      "bytes": 37516186,
+      "sha256": "b81703c0f48b3d98581ff396ea71a597cc023194fc0d6c87e02099b4082980fd",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-e3c561806bdb593b975c.zip"
+    },
+    "weights-f1657b3e9894f887db92.zip": {
+      "bytes": 37522101,
+      "sha256": "d9429b51ec3d057e90d9df5b26914df920baa418a8135d79bb480e39dd7bd720",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-f1657b3e9894f887db92.zip"
+    },
+    "weights-f2863f934c56e1633c7c.zip": {
+      "bytes": 211370,
+      "sha256": "1cc23d035a27a2322d663f139b6b4ed406f83aeb92f6e1080df4019deb21e326",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-f2863f934c56e1633c7c.zip"
+    },
+    "weights-f6d116b6181f25da3022.zip": {
+      "bytes": 5972524,
+      "sha256": "0feb9e5f12732b370830e36fa1773956a1f3752a035abf1f28e54fc82f14cfb8",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-f6d116b6181f25da3022.zip"
+    },
+    "weights-f996fe61770378500287.zip": {
+      "bytes": 212623,
+      "sha256": "109b11b5a939fcc468e9867c67c3868edf2bf3b9232b6007e32745543e048af7",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-f996fe61770378500287.zip"
+    },
+    "weights-fbb8372fa72ce253f364.zip": {
+      "bytes": 37510837,
+      "sha256": "daadf4292022c7061623f2c53d1f188e2d6e01b113d1463ab50a2dd1ed913bee",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-fbb8372fa72ce253f364.zip"
+    },
+    "weights-fbc69a14247f3186df35.zip": {
+      "bytes": 5455,
+      "sha256": "80ddad3e6941b76dc05786d22f0cf2f6be8138b2d90e9ce443cba6b49f64d78c",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-fbc69a14247f3186df35.zip"
+    },
+    "weights-ff20477e1c8c5acaaff9.zip": {
+      "bytes": 37507632,
+      "sha256": "49e5558e754406a4398fb2af7e86bcd8b746f59e5eb460b9a1dced9906c75cc6",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-ff20477e1c8c5acaaff9.zip"
+    },
+    "weights-ffd26b1c1a3aa3aac5dd.zip": {
+      "bytes": 5390375,
+      "sha256": "e42151b691704869d368a2e541e79f70ddbb12aca11b0c6e4d43465d78e8076e",
+      "kind": "model",
+      "url": "https://github.com/hty8870/biodata-model-lab/releases/download/v0.1.0/weights-ffd26b1c1a3aa3aac5dd.zip"
+    }
+  }
+}

@@ -1,0 +1,570 @@
+{
+  "format": "memory-relations-public-benchmarks-v4",
+  "status": "research-only",
+  "study_id": "memory-relations-public-benchmarks-v4-20261012",
+  "purpose": "对 OCNLI/ANLI/HANS/ContractNLI 四套公开评测集冻结记录/任务合同、兼容评测视图、独立单位分区与 poor/重训准入判据；公开成绩只作研究子能力诊断，不接生产、不认证风险、不改变既有七类模型与 v3 实验 schema。",
+  "freeze": {
+    "status": "frozen_before_results",
+    "frozen_at": "2026-10-12",
+    "basis_commit": "c6fcabd195eaaded0f21e9463d9dd5ff1d47af63",
+    "score_exposure": "冻结前未观测任何公开基准成绩（无推理运行、无预测、无准确率）；本地七类工件本轮只作只读寻址。",
+    "amendment_policy": "任何改动必须先改 study-v4.json 再同步 protocol.FROZEN_STUDY_SHA256，写日志并过独立审查；成绩曝光后修改即失效，不得静默改判据/分母/分区。",
+    "pre_exposure_amendments": [
+      "2026-10-12 预曝光修订（tower 裁定）：任务不等价探针主向改为 hypothesis_as_candidate（candidate=新候选、existing=既有证据），premise_as_candidate 降为交换辅助诊断",
+      "2026-10-12 预曝光修订（tower 裁定）：分用途改为依赖 cluster 连通分量（共享 group_id/规范化 premise/有向 pair 指纹），raw group_id 原样保留、不删行、不逐行随机拆分、留出不足如实报告",
+      "2026-10-12 预曝光修订（M8 实测）：gold_status 增 generated（HANS 模板构造）；映射维护锚点归数据源 label_map，快照只读+parity",
+      "2026-10-12 预曝光修订（M8 实测）：OCNLI 官方 test 无 prem_id 的缺标行允许 premise_family_key 派生 group_id 并披露 group_id_source",
+      "2026-10-13 预曝光修订（r1 review P1/P2 修复）：消费端 manifest 执法（validate_manifest/manifest_scope，预定全行集合不用调用方自报子集；fragment 绑定不得用于最终完成/准入）",
+      "2026-10-13 预曝光修订（r1 review P1-2）：准入改为证据绑定（结构化报告+manifest+results 重算、唯一 cluster 反例、baseline 任务/监督/成员 SHA/分母匹配、选择不完整不得 poor）",
+      "2026-10-13 预曝光修订（r1 review P1-3）：ContractNLI oracle 改为 E/C 条件二类任务（gold ∈ {entailment, contradiction} 且有跨度），neutral/ineligible/span 缺失分列记账",
+      "2026-10-13 预曝光修订（r1 review P2）：缺标不当 AUC 负例；截断缺证据降级全文声明；HANS provenance 强制 generated/template_rule；七类概率 simplex 校验；OCNLI 无共识标记 `-` → null 纳入映射快照",
+      "2026-10-13 预曝光修订（r2 review P1-1 + 根协调者裁定 A/B）：单一 manifest 机制收口——validate_manifest 增「每桶实际成员与重算 purpose 一致」执法（manifest_bucket_mismatch），select_for_phase 返回任何行前先做同一验证，最终完成 assert_final_complete 由权威 manifest+完整真实 results 重新派生并逐字段比对报告（不信报告内 binding/complete/失败计数旗子）；删除未发布、无真实消费者的无 manifest fragment 计分旁路（显式 manifest_required）",
+      "2026-10-13 预曝光修订（r2 review P1-2 + 根协调者裁定 C）：admission_check 改为证据完整性报告 + manual_evidence_review_required，不自动 poor=True/retrain=True；基线一律可复算（majority_class=选择行最高频 gold、chance=1/类数解析值；实证基线须完整逐题预测+冻结配方标识并在同一成员集复算，规则实现本身标注未核验）；归因声明只做结构登记、validated=false，科学归因交父/独立复核；预注册严格比较方向（CI 上界 < 最强匹配基线）保留为描述性统计",
+      "2026-10-13 预曝光修订（r2 review P2-1 + 根协调者裁定 D）：native_view_binding 绑定冻结 native_reference 注册表（schema/kind/类序/标签空间/主向/槽位/input_recipe=finetune.INPUT_RECIPE/窗口），元数据注册比对与 weights 文件 SHA256 完整性分开报告（不声称任意非空字符串即匹配）",
+      "2026-10-13 预曝光修订（r2 review P2-2 + 根协调者裁定 E + M8 实测）：provenance 改组合表并复算真实证据计数（OCNLI votes/votes_valid_count：majority≥2 有效票、single 容无公开复核票的单人标注、no_consensus/missing 真实口径；ANLI verifier_labels/verifier_agree_count：adjudicated≥2 命中）；缺 raw 单位 id 的行（含 OCNLI 官方 test 缺标行与 train 极少数有 gold 行）只要求 premise_family_key 派生 + group_id_source 披露，不再要求 gold 也缺失（M8 3003 行误拒修复）",
+      "2026-10-13 预曝光修订（r2 review P2-3 + 根协调者裁定 F）：oracle 记账分列真 neutral / missing / no_consensus / 无跨度 / eligible，missing 不归 neutral，并对 n_official 做守恒检查",
+      "2026-10-13 预曝光修订（r3 review P2-1/P2-2 + 根窄修指令）：OCNLI majority 增声明式票支持谓词（有效票≥2 且 2×同意票>有效票，同意票=有效票中与 original_label 官方原值相同者；镜像数据源 producer 公共纯锚点 `datasets.ocnli_vote_status`，穷举 5×7^5 parity 与真实 296070 行逐行复算 0 分歧，不另立阈值），新增防务组合 single/no_majority（有效票≥2 但无严格多数、官方 gold 不改，真实数据 0 行），missing/no_label 行的票计数按锚点原样保留（不再限定 0 票）；admission 改为「任何带 manifest/results 的调用（完整/不完整/零观测一致）先按同一入口重算并逐字段比对」，零 scored_with_gold 返回 no_scored_observations 不足证据 descriptor（comparison=null、计数守恒），不带权威输入的裸‘不完整’声明只作 unverified_caller_declaration 回显",
+      "2026-10-13 预曝光修订（塔：use public producer helper not mirrored formula；基线重定 rebase 到含 M8 的 master b3dea88）：OCNLI provenance 改为 **derivation 复用生产方公共纯锚点 `datasets.ocnli_vote_status`**——校验器直接调用该函数并按 require/require_when_declared 逐字段比对记录声明，删除 M7 侧票支持谓词与平行公式（组合表只保留 accepted status/method 词汇，加参数绑定/默认值/比对字段）；缺失 votes 的旧形状以声明默认值 [] 走锚点（status/method 仍须一致）；revision_history 的 commit 字段同步为 rebase 后等价提交哈希"
+    ],
+    "revision_history": [
+      {"revision": "r1-initial", "study_sha256": "4c456059834394ff6602252caa52600669deb2f3384632be475a38eb355d2bb2", "commit": "659d4c02", "note": "r1 初版**未提交草稿源件**（作者工作区中间字节，从未作为任何提交 blob 存在——分支全历史无此字节；659d4c02/c6699895 的提交内容实为下一条 031e7e20）——保留为历史记录/未证明源件，不代表该检查点文件内容"},
+      {"revision": "r1-final", "study_sha256": "031e7e20cfe7b8388efaff6e70c0279454121e91dbca7e3492ab3202dbdc7db6", "commit": "659d4c02", "note": "补 oracle 受控取用接口后重绑（659d4c02/c6699895 的提交 blob 即本字节）；独立审查 tip=194c5f26 前身"},
+      {"revision": "r2", "study_sha256": "8d997bd490a9ebb931607d7da8c397200c84664447f27cc0d7a302f87733dcda", "commit": "443933b0", "note": "cluster 分区/主向/映射锚点/gold_status 枚举（原提交 194c5f26；d9a6f4d9/f5f06be4 为文档提交不改 study）；r1 review 目标 tip=d9a6f4d9"},
+      {"revision": "r4-r1fix", "study_sha256": "5948b5509575f8671ab55ada87e5f6cbbb61cfd9d7f78514ad5205bf495ef2ee", "commit": "12c5a718", "note": "r1 审查 3P1+5P2 修复（manifest 执法/证据绑定准入/E-C oracle/截断/HANS/simplex/映射快照；原提交 0c166024）；r2 审查目标 tip（verdict p1-2items/hold）"},
+      {"revision": "r5-close", "study_sha256": "22e0e86c52787c15be0d6928447dbe39670a1e30785f2652a4e8b4b882b80c75", "commit": "9689fe82", "note": "单机制收口（r2 2P1+3P2+根裁定 A–F）：manifest 桶成员/selector/完成重派生、删 fragment、准入证据报告+可复算基线、原生注册表绑定、组合式 provenance、oracle 缺标分列（原提交 70cb488f）；r3 审查目标 tip（verdict p2-2items/fix-then-merge）"},
+      {"revision": "r6-r3narrow", "study_sha256": "b5f83d2b832cbd349c350d63707f93b2e0795bd0c10fe0e9d39f6bcbf3871e1d", "commit": "b0747f09", "note": "r3 两项窄修（严格票支持/组合表 + admission 权威输入优先重算与零观测 descriptor）；提交 blob=b5f83d2（原提交 82711f07）"},
+      {"revision": "r6b-parity", "study_sha256": "d47035650f88d732dfbb019230be9b6c123ba30eacb23f7a05e13b5796ed5443", "commit": "1bdb53ca", "note": "parity 收口确实改了 study：移除 missing/no_label 的 max_count:0 并更新锚点/parity 说明（原提交 522e32dd）"},
+      {"revision": "r7-final", "study_sha256": "9a68220038a11b2ea1764c40311c86fb01cf259e29148eb7bfa91b39a7d2016b", "commit": "b47559ee", "note": "rebase 到含 M8 的 master b3dea88 + 唯一 import 复用 datasets.ocnli_vote_status（derivation，删平行公式）"}
+    ]
+  },
+  "non_goals": [
+    "不改变既有七类模型、训练管线、spec.json 与 v3 实验 schema",
+    "不接生产、不部署、不认证生产安全，不产出风险/放行/放心表述",
+    "不下载模型、不训练、不加载 GPU（本轮未授权）",
+    "不以公开基准成绩挑选/修改旧运行、旧终测或审计锁",
+    "不做 NLI→七类硬映射，也不做七类→NLI 预测映射"
+  ],
+  "axes": {
+    "public_benchmark_axis": "子能力诊断（NLI 语义判定、HANS 启发式仪器、合同条款理解）；只回答相应子能力问题，不外推生产风险",
+    "separate_from": {
+      "contract": "scope/权限/projection/gate 是机械判定（schema.py 的 _check_projection/validate_row 与 evaluate 的 gate_errors），公开 NLI 无法检验，须保留独立合同探针",
+      "gate": "门唯一真源是 metrics.pair_verdict（+ adapter.make_predictor）；本协议不引入第二套门，诊断也不替代门",
+      "certification": "公开人工参考不是七类 human gold、不是生产风险证书；任何「通过=放心」表述禁止"
+    }
+  },
+  "local_model": {
+    "scorer_dir": "runs/v3-data-ablation-20261012/new-adjudicated/scorers/finetuned-joint-size3290-seed13",
+    "scorer_dir_base": "research/memory_relations",
+    "weights_sha256": "3b5403da2366bf8f4144ac95ebe6793d13cc82767cf55023cfe0ba4a21167498",
+    "meta_sha256": "7ab44014d1b84b6e50be45e84ddb33685661b00bc3017544e33b39e4b544f948",
+    "classes": ["complement", "conflict", "contextual", "duplicate", "supersede", "temporary", "uncertain"],
+    "threshold": null,
+    "threshold_feasible": false,
+    "loader": "research.memory_relations.features.load_scorer",
+    "scorer_api": "finetune.CrossEncoderScorer.predict_proba → (n, 7)，类序 = features.CLASSES",
+    "role": "external_contradiction_diagnostic_only",
+    "production_certification_allowed": false,
+    "notes": [
+      "threshold=null：该工件不是已校准操作点；本协议不得让旧工件获得新认证或追认生产风险通过",
+      "工件只读寻址；本轮不加载、不预测、不写回",
+      "输入配方与截断口径复用 finetune.py 的 joint_blocks/_serialize/joint_text 与 truncation_profile（单一真源）"
+    ]
+  },
+  "native_reference": {
+    "schema": "memory-relations-nli-reference-scorer-v1",
+    "kind": "nli-reference-joint",
+    "label_space": "nli3",
+    "input_recipe": "memory-relations-joint-input-v1",
+    "recipe_source": "research.memory_relations.finetune.INPUT_RECIPE",
+    "classes": ["entailment", "neutral", "contradiction"],
+    "direction": "hypothesis_as_candidate",
+    "joint_roles": {"premise": "existing", "hypothesis": "candidate"},
+    "max_tokens_standard": 384,
+    "binding_rule": "正式 runner 用 native_view_binding(view, artifact, weights_path=可选) 逐项比对本注册表（schema/kind/类序/标签空间/主向/槽位/input_recipe/窗口），给 weights_path 时核验文件 SHA256；元数据注册比对与完整性核验分开报告；input_recipe 必须等于 finetune.INPUT_RECIPE，不是任意非空字符串"
+  },
+  "label_spaces": {
+    "tasks": ["nli3", "entailment2"],
+    "canonical_gold": ["entailment", "contradiction", "neutral", "non-entailment", null],
+    "gold_statuses": ["adjudicated", "majority", "single", "generated", "no_consensus", "missing"],
+    "nli_classes": ["entailment", "neutral", "contradiction"],
+    "diagnostic_seven": ["complement", "conflict", "contextual", "duplicate", "supersede", "temporary", "uncertain"],
+    "native": {
+      "ocnli": ["entailment", "neutral", "contradiction"],
+      "anli": ["e", "n", "c"],
+      "hans": ["entailment", "non-entailment"],
+      "contractnli": ["Entailment", "Contradiction", "NotMentioned"]
+    },
+    "canonical_mapping_status": "只读冻结快照（证据）；运行时唯一维护锚点是数据源 sources.json 的 label_map，经 canonical_gold_label(catalog=...) 传入并由 check_label_catalog 做 parity；不得三处平行改内容",
+    "canonical_mapping": {
+      "ocnli": {"entailment": "entailment", "neutral": "neutral", "contradiction": "contradiction", "-": null},
+      "anli": {"e": "entailment", "n": "neutral", "c": "contradiction"},
+      "hans": {"entailment": "entailment", "non-entailment": "non-entailment"},
+      "contractnli": {"Entailment": "entailment", "Contradiction": "contradiction", "NotMentioned": "neutral"}
+    },
+    "notes": {
+      "contractnli_not_mentioned": "NotMentioned 是该任务规范化的第三类（→ neutral）；original_label 必须原样保留；它不是七类 uncertain，也不得当 contradiction",
+      "hans_non_entailment": "HANS 只有 entailment/non-entailment；non-entailment 不表示矛盾，绝不映射 contradiction",
+      "hans_gold_status": "HANS 标签由模板构造决定（非投票非人工裁决），gold_status=generated；label_method=template_rule；provenance 由校验器强制",
+      "ocnli_test": "官方 test 分区无 label 也无 prem_id（raw prem_id=null）：gold_status=missing、label_method=no_label、votes 全空；group_id 用 premise_family_key 派生并披露 group_id_source=derived_premise_family",
+      "ocnli_no_consensus_marker": "官方 `-`（无共识）映射为 gold null：官方原始标记不得删除，也不得另建平行映射；标签子集与 no_consensus 分行记账",
+      "ocnli_train_votes": "train/dev 的 majority/single 等状态**完全由生产方公共纯锚点 `datasets.ocnli_vote_status` 决定**（parse_ocnli 与消费校验同源）：有效票≥2 且 2×同意票（=有效票中与官方 gold 原值相同者）>有效票 → majority/majority_vote；有效票≥2 无严格多数 → single/no_majority（官方 gold 不改，防务分支，真实数据 0 行）；有效票<2 → single/single_annotation（含无公开复核票的单人标注）；官方 `-` → no_consensus/majority_vote；无标签 → missing/no_label。provenance.derivation 声明该函数与输入绑定/默认值/比对字段，校验器直接调用并逐字段比对记录声明（M7 不含第二套公式）；真实 296070 行审计 0 违例",
+      "auc_missing": "监督 AUC/自助只吃有 gold 的行；缺标行留在总体分布/覆盖记账，绝不当负例",
+      "orphan_contract": "ContractNLI oracle 是 E/C 条件二类任务（task=entailment_contradiction，subset_of=nli3）；neutral/缺标/无跨度行只在记账中体现，不用空 premise 泄漏标签"
+    }
+  },
+  "input_adaptations": {
+    "native": "premise/hypothesis 原生文本面直用：不借 trigger/evidence 槽、不加 metadata/gold/provenance、不做槽位挪用",
+    "diagnostic": {
+      "slots": {
+        "candidate": "主向=hypothesis 文本（新候选）；交换向=premise 文本",
+        "existing": "主向=premise 单元素列表（既有证据）；交换向=hypothesis",
+        "evidence": [],
+        "trigger": "空"
+      },
+      "primary_direction": "hypothesis_as_candidate",
+      "swap_direction": "premise_as_candidate",
+      "direction_rationale": "candidate=新候选、existing=既有证据，与七类任务槽位语义一致；预注册主向，不按成绩挑方向",
+      "rules": [
+        "两向都跑、主向预注册、报翻转率；不得平均两向",
+        "默认不加 candidate quote / evidence 块（避免改变配方）",
+        "只取 premise/hypothesis 文本面；metadata/gold/provenance 不进学生输入"
+      ],
+      "windows": {
+        "production_contract": {"max_tokens": 384, "note": "生产一致配方（右侧截断，按 truncation_profile）"},
+        "backbone_fulltext": {"max_tokens": 512, "note": "全文诊断臂 ≤512（backbone max_position_embeddings=512）；仍逐行记录 truncated"}
+      },
+      "window_separation": "384 臂与全文臂物理分开、分别报告；差值只在真实被截断桶报告，绝不合并成单一数字"
+    },
+    "contract_oracle": "oracle_evidence 视图显式受控读取 record.metadata.spans（gold 证据跨度）；与 full_document 层独立报告，不合并数字，不把 span 拼接称全文"
+  },
+  "datasets": {
+    "ocnli": {
+      "task": "nli3",
+      "language": "zh",
+      "unit": {"metadata_key": "prem_id", "rule": "官方 dev/train 用真实 prem_id；缺 raw prem_id 的行（官方 test 缺标行与 train 极少数有 gold 行）只允许 premise_family_key 派生 group_id 并披露 group_id_source=derived_premise_family——派生与 gold 是否缺失是两件事", "fallback": {"derive": "premise_family_key", "source_field": "group_id_source", "source_value": "derived_premise_family"}},
+      "provenance": {
+        "combinations": [
+          {"gold_status": ["majority"], "label_method": ["majority_vote"]},
+          {"gold_status": ["single"], "label_method": ["single_annotation", "no_majority"]},
+          {"gold_status": ["no_consensus"], "label_method": ["majority_vote"]},
+          {"gold_status": ["missing"], "label_method": ["no_label"]}
+        ],
+        "derivation": {
+          "function": "ocnli_vote_status",
+          "arguments": {"original_label": {"field": "original_label", "default": null},
+                        "votes": {"field": "votes", "default": []}},
+          "require": ["gold_status", "label_method"],
+          "require_when_declared": ["votes_valid_count"]
+        },
+        "derivation_source": "research.memory_relations.public_benchmarks.datasets.ocnli_vote_status（M8 生产方公共纯锚点，parse_ocnli 与消费校验同源）：校验器直接调用该函数并按 require/require_when_declared 逐字段比对记录声明，M7 不复制任何聚合公式；本表只声明 accepted vocabulary 与参数绑定/默认值/比对字段"
+      },
+      "required_metadata": [{"key": "prem_id", "type": "str"}, {"key": "label_method", "type": "str"}],
+      "stratify_by": [],
+      "retention": ["prem_id（如有）", "有效人标票数（metadata.opinions，如有）", "label_method"],
+      "expected_splits": ["dev", "test"],
+      "task_matched_language": true
+    },
+    "anli": {
+      "task": "nli3",
+      "language": "en",
+      "unit": {"metadata_key": "premise_hash", "derive": "premise_family_key", "rule": "规范化 premise 内容 hash（NFKC+空白折叠）；不得用 uid 任意前缀当独立前提族；round/source 留 metadata"},
+      "provenance": {
+        "combinations": [
+          {"gold_status": ["adjudicated"], "label_method": ["writer_with_verifiers"], "min_count": 2},
+          {"gold_status": ["single"], "label_method": ["writer_only"], "max_count": 1},
+          {"gold_status": ["missing"], "label_method": ["no_label"]}
+        ],
+        "count_field": "verifier_agree_count",
+        "count_of": "verifier_labels",
+        "count_mode": "agree_with_original_label"
+      },
+      "required_metadata": [
+        {"key": "premise_hash", "type": "str"},
+        {"key": "round", "type": "text", "allowed": ["r1", "r2", "r3"]},
+        {"key": "uid", "type": "str"},
+        {"key": "label_method", "type": "str"}
+      ],
+      "stratify_by": ["round"],
+      "retention": ["round", "uid", "复核信息（metadata.review/verifier，如有）", "label_method"],
+      "expected_splits": ["dev", "test"],
+      "task_matched_language": false
+    },
+    "hans": {
+      "task": "entailment2",
+      "language": "en",
+      "unit": {"metadata_key": "template", "rule": "template 家族（含 heuristic/subcase 元数据）"},
+      "provenance": {
+        "combinations": [
+          {"gold_status": ["generated"], "label_method": ["template_rule"]},
+          {"gold_status": ["missing"], "label_method": ["no_label"]}
+        ]
+      },
+      "required_metadata": [
+        {"key": "heuristic", "type": "str"},
+        {"key": "subcase", "type": "str"},
+        {"key": "template", "type": "text"},
+        {"key": "label_method", "type": "str"}
+      ],
+      "stratify_by": ["heuristic", "subcase"],
+      "retention": ["heuristic", "subcase", "template", "label_method"],
+      "expected_splits": ["dev", "test"],
+      "task_matched_language": false
+    },
+    "contractnli": {
+      "task": "nli3",
+      "language": "en",
+      "unit": {"metadata_key": "doc_id", "rule": "合同 doc-id；17 条命题按 doc 分组"},
+      "provenance": {
+        "combinations": [
+          {"gold_status": ["single"], "label_method": ["single_annotation"]},
+          {"gold_status": ["missing"], "label_method": ["no_label"]}
+        ]
+      },
+      "required_metadata": [{"key": "doc_id", "type": "str"}, {"key": "label_method", "type": "str"}],
+      "stratify_by": [],
+      "retention": ["doc_id", "hypothesis_id（如有）", "gold 证据跨度（metadata.spans）", "annotation（如有）", "label_method"],
+      "expected_splits": ["dev", "test"],
+      "task_matched_language": false
+    }
+  },
+  "views": [
+    {
+      "view_id": "ocnli_nli3_native",
+      "dataset": "ocnli",
+      "kind": "native_nli",
+      "task": "nli3",
+      "layer": "standard",
+      "scope_rule": "all_rows",
+      "availability_rule": "artifact_binding_required",
+      "arm_spaces": ["nli3"],
+      "reductions": {},
+      "arm_spec": "同骨干同配方（MiniLM-L12 backbone + CLS 池化 + 384）3 类 NLI 参考臂；只组装既有原语（finetune.py 的 _encode/_training_windows/build_optimizer/logits_for/truncation_profile 与 metrics.macro_f1(n_classes=3)）；禁用 train_model 七类硬闸与 7 类 save/load_scorer 工件 schema；输出类名按 meta 类名定位（NLI_CLASSES=entailment/neutral/contradiction 固定类序），不猜 index。M11 工件 `research/memory_relations/nli_reference.py` 已就位（fb57dce1），由正式 runner 用 native_view_binding 绑定后置 runnable。",
+      "input": {"premise_field": "record.premise", "hypothesis_field": "record.hypothesis", "policy": "原生文本面直用：candidate=hypothesis、existing=[premise]（与诊断主向同一槽位口径）；不加 metadata/gold/provenance"},
+      "metrics": ["accuracy", "macro_f1", "per_class", "coverage", "failure_rate", "attempt_rate", "cluster_bootstrap", "by_stratum", "by_truncation"],
+      "available_in_round": false,
+      "unavailable_reason": "尚无正式 runner 绑定的原生工件（native_view_binding 核验类名/主向/配方/哈希后置 runnable）；不得静默长期不跑，也不得用七类替代产出三分类准确率"
+    },
+    {
+      "view_id": "anli_nli3_native",
+      "dataset": "anli",
+      "kind": "native_nli",
+      "task": "nli3",
+      "layer": "standard",
+      "scope_rule": "all_rows",
+      "availability_rule": "artifact_binding_required",
+      "arm_spaces": ["nli3"],
+      "reductions": {},
+      "arm_spec": "同骨干同配方 3 类 NLI 参考臂（同 ocnli_nli3_native 的 arm_spec）；按 round 分层报告。M11 工件由正式 runner 用 native_view_binding 绑定后置 runnable。",
+      "input": {"premise_field": "record.premise", "hypothesis_field": "record.hypothesis", "policy": "原生文本面直用：candidate=hypothesis、existing=[premise]；不加 metadata/gold/provenance"},
+      "metrics": ["accuracy", "macro_f1", "per_class", "coverage", "failure_rate", "attempt_rate", "cluster_bootstrap", "by_stratum", "by_truncation"],
+      "available_in_round": false,
+      "unavailable_reason": "尚无正式 runner 绑定的原生工件（native_view_binding 核验后置 runnable）；不得静默长期不跑，也不得用七类替代产出三分类准确率"
+    },
+    {
+      "view_id": "hans_entailment2_native",
+      "dataset": "hans",
+      "kind": "native_nli",
+      "task": "entailment2",
+      "layer": "standard",
+      "scope_rule": "all_rows",
+      "availability_rule": "artifact_binding_required",
+      "arm_spaces": ["nli3"],
+      "reductions": {"nli3": "argmax==entailment → entailment，其余（contradiction/neutral）→ non-entailment；只在本任务二分类内归约，不引入七类"},
+      "arm_spec": "HANS 需要原生 NLI 参考臂才有正式准确率；同骨干同配方 3 类 NLI 臂按上表归约成 entailment2。HANS 只测不训。M11 工件由正式 runner 用 native_view_binding 绑定后置 runnable。",
+      "input": {"premise_field": "record.premise", "hypothesis_field": "record.hypothesis", "policy": "原生文本面直用：candidate=hypothesis、existing=[premise]；不加 metadata/gold/provenance"},
+      "metrics": ["accuracy", "macro_f1", "per_class", "coverage", "failure_rate", "attempt_rate", "cluster_bootstrap", "by_stratum", "by_truncation"],
+      "available_in_round": false,
+      "unavailable_reason": "HANS 只有 entailment2，须原生 NLI 参考臂才有正式准确率；尚无正式 runner 绑定的原生工件（native_view_binding 后置 runnable）"
+    },
+    {
+      "view_id": "contractnli_nli3_full_document",
+      "dataset": "contractnli",
+      "kind": "native_nli",
+      "task": "nli3",
+      "layer": "full_document",
+      "claim_full_text": true,
+      "scope_rule": "all_rows",
+      "availability_rule": "artifact_binding_required",
+      "arm_spaces": ["nli3"],
+      "reductions": {},
+      "arm_spec": "同骨干同配方 3 类 NLI 参考臂（同 ocnli_nli3_native 的 arm_spec）；premise=合同全文。M11 工件由正式 runner 用 native_view_binding 绑定后置 runnable。",
+      "window": {"kind": "arm_native", "max_tokens": null, "truncation": "按评估臂自身窗口逐行记录 truncated 显式证据；缺证据或存在截断即只能声明 windowed_not_full，不得当全文"},
+      "input": {"premise_field": "record.premise（合同全文）", "hypothesis_field": "record.hypothesis", "policy": "全文档层评全部官方命题；窗口限制逐行记录，不把 384/512 截断当全文"},
+      "metrics": ["accuracy", "macro_f1", "per_class", "coverage", "failure_rate", "attempt_rate", "cluster_bootstrap", "by_truncation"],
+      "available_in_round": false,
+      "unavailable_reason": "尚无正式 runner 绑定的原生工件（native_view_binding 后置 runnable）；full_document 层需要逐行截断证据"
+    },
+    {
+      "view_id": "contractnli_nli3_oracle_evidence",
+      "dataset": "contractnli",
+      "kind": "native_nli",
+      "task": "entailment_contradiction",
+      "subset_of": "nli3",
+      "layer": "oracle_evidence",
+      "oracle": true,
+      "independent_layer": true,
+      "scope_rule": "gold_evidence_two_class",
+      "availability_rule": "artifact_binding_required",
+      "eligibility": {"gold_in": ["entailment", "contradiction"], "require_spans": true},
+      "arm_spaces": ["nli3"],
+      "reductions": {"nli3": "只在 gold ∈ {entailment, contradiction} 条件下取 E/C 二类；neutral/ineligible/无跨度行不入分母，分列记账"},
+      "arm_spec": "同骨干同配方 3 类 NLI 参考臂；premise=gold 证据跨度（oracle，E/C 条件二类任务）。M11 工件由正式 runner 用 native_view_binding 绑定后置 runnable；neutral 无 gold 独立窗口政策，不用空 premise 泄漏标签。",
+      "input": {"premise_field": "record.metadata.spans（gold 证据跨度，受控 oracle 取用）", "hypothesis_field": "record.hypothesis", "policy": "显式 oracle；与 full_document 层独立报告，不合并数字，不称全文"},
+      "metrics": ["accuracy", "macro_f1", "per_class", "coverage", "failure_rate", "attempt_rate", "cluster_bootstrap"],
+      "available_in_round": false,
+      "unavailable_reason": "oracle 层是 E/C 条件二类任务，需要 gold 证据跨度与正式 runner 绑定的原生工件（native_view_binding 后置 runnable）"
+    },
+    {
+      "view_id": "ocnli_diag7_w384",
+      "dataset": "ocnli",
+      "kind": "seven_class_external_diagnostic",
+      "task": "nli3",
+      "task_equivalence": "none",
+      "window": {"kind": "production_contract", "max_tokens": 384, "truncation": "按 finetune.truncation_profile 右侧截断；逐行记录 truncated"},
+      "directions": {"primary": "hypothesis_as_candidate", "swap": "premise_as_candidate", "report": ["flip_rate"], "averaging": "forbidden"},
+      "output": "external_contradiction_diagnostic",
+      "output_kind": "seven_class_probability_distribution",
+      "metrics": ["mean_probability_by_gold", "conflict_signal_auc", "flip_rate", "by_stratum"],
+      "available_in_round": true,
+      "probe_note": "任务不等价探针；不得称错误放行/风险/认证；不得 map 到 NLI 标签；与 w512 报告物理分开，差值只在真实截断桶报"
+    },
+    {
+      "view_id": "ocnli_diag7_w512",
+      "dataset": "ocnli",
+      "kind": "seven_class_external_diagnostic",
+      "task": "nli3",
+      "task_equivalence": "none",
+      "window": {"kind": "backbone_fulltext", "max_tokens": 512, "truncation": "≤512 全文诊断臂；仍逐行记录 truncated"},
+      "directions": {"primary": "hypothesis_as_candidate", "swap": "premise_as_candidate", "report": ["flip_rate"], "averaging": "forbidden"},
+      "output": "external_contradiction_diagnostic",
+      "output_kind": "seven_class_probability_distribution",
+      "metrics": ["mean_probability_by_gold", "conflict_signal_auc", "flip_rate", "by_stratum"],
+      "available_in_round": true,
+      "probe_note": "全文诊断臂；与 384 生产臂物理分开，不合并数字"
+    },
+    {
+      "view_id": "anli_diag7_w384",
+      "dataset": "anli",
+      "kind": "seven_class_external_diagnostic",
+      "task": "nli3",
+      "task_equivalence": "none",
+      "window": {"kind": "production_contract", "max_tokens": 384, "truncation": "按 finetune.truncation_profile 右侧截断；逐行记录 truncated；长 premise 桶单独报告"},
+      "directions": {"primary": "hypothesis_as_candidate", "swap": "premise_as_candidate", "report": ["flip_rate"], "averaging": "forbidden"},
+      "output": "external_contradiction_diagnostic",
+      "output_kind": "seven_class_probability_distribution",
+      "metrics": ["mean_probability_by_gold", "conflict_signal_auc", "flip_rate", "by_stratum"],
+      "available_in_round": true,
+      "probe_note": "任务不等价探针；两向不平均；截断桶单独报告"
+    },
+    {
+      "view_id": "anli_diag7_w512",
+      "dataset": "anli",
+      "kind": "seven_class_external_diagnostic",
+      "task": "nli3",
+      "task_equivalence": "none",
+      "window": {"kind": "backbone_fulltext", "max_tokens": 512, "truncation": "≤512 全文诊断臂；仍逐行记录 truncated"},
+      "directions": {"primary": "hypothesis_as_candidate", "swap": "premise_as_candidate", "report": ["flip_rate"], "averaging": "forbidden"},
+      "output": "external_contradiction_diagnostic",
+      "output_kind": "seven_class_probability_distribution",
+      "metrics": ["mean_probability_by_gold", "conflict_signal_auc", "flip_rate", "by_stratum"],
+      "available_in_round": true,
+      "probe_note": "全文诊断臂；与 384 生产臂物理分开"
+    },
+    {
+      "view_id": "hans_diag7_w384",
+      "dataset": "hans",
+      "kind": "seven_class_external_diagnostic",
+      "task": "entailment2",
+      "task_equivalence": "none",
+      "window": {"kind": "production_contract", "max_tokens": 384, "truncation": "按 finetune.truncation_profile 右侧截断；逐行记录 truncated"},
+      "directions": {"primary": "hypothesis_as_candidate", "swap": "premise_as_candidate", "report": ["flip_rate"], "averaging": "forbidden"},
+      "output": "external_contradiction_diagnostic",
+      "output_kind": "seven_class_probability_distribution",
+      "metrics": ["mean_probability_by_gold", "conflict_signal_auc", "flip_rate", "by_stratum"],
+      "available_in_round": true,
+      "probe_note": "HANS 只测不训；按 heuristic/subcase 分层的分布差只是关联，不单独证明词面捷径；不得称错误放行"
+    },
+    {
+      "view_id": "hans_diag7_w512",
+      "dataset": "hans",
+      "kind": "seven_class_external_diagnostic",
+      "task": "entailment2",
+      "task_equivalence": "none",
+      "window": {"kind": "backbone_fulltext", "max_tokens": 512, "truncation": "≤512 全文诊断臂；仍逐行记录 truncated"},
+      "directions": {"primary": "hypothesis_as_candidate", "swap": "premise_as_candidate", "report": ["flip_rate"], "averaging": "forbidden"},
+      "output": "external_contradiction_diagnostic",
+      "output_kind": "seven_class_probability_distribution",
+      "metrics": ["mean_probability_by_gold", "conflict_signal_auc", "flip_rate", "by_stratum"],
+      "available_in_round": true,
+      "probe_note": "HANS 只测不训；分层差只作关联诊断"
+    },
+    {
+      "view_id": "contractnli_diag7_w384",
+      "dataset": "contractnli",
+      "kind": "seven_class_external_diagnostic",
+      "task": "nli3",
+      "task_equivalence": "none",
+      "window": {"kind": "production_contract", "max_tokens": 384, "truncation": "合同全文按 384 右侧截断；截断比例必须逐行/分层报告，不得当全文"},
+      "directions": {"primary": "hypothesis_as_candidate", "swap": "premise_as_candidate", "report": ["flip_rate"], "averaging": "forbidden"},
+      "output": "external_contradiction_diagnostic",
+      "output_kind": "seven_class_probability_distribution",
+      "metrics": ["mean_probability_by_gold", "conflict_signal_auc", "flip_rate", "by_stratum"],
+      "available_in_round": true,
+      "probe_note": "任务不等价探针；与 full_document/oracle 原生层无关，不得合并数字"
+    },
+    {
+      "view_id": "contractnli_diag7_w512",
+      "dataset": "contractnli",
+      "kind": "seven_class_external_diagnostic",
+      "task": "nli3",
+      "task_equivalence": "none",
+      "window": {"kind": "backbone_fulltext", "max_tokens": 512, "truncation": "≤512 全文诊断臂；合同文档仍可能被截断，须逐行记录"},
+      "directions": {"primary": "hypothesis_as_candidate", "swap": "premise_as_candidate", "report": ["flip_rate"], "averaging": "forbidden"},
+      "output": "external_contradiction_diagnostic",
+      "output_kind": "seven_class_probability_distribution",
+      "metrics": ["mean_probability_by_gold", "conflict_signal_auc", "flip_rate", "by_stratum"],
+      "available_in_round": true,
+      "probe_note": "全文诊断臂；差值只在真实截断桶报告"
+    }
+  ],
+  "partition": {
+    "salt": "memory-relations-public-benchmarks-v4-20261012",
+    "diagnostic_fraction": 0.5,
+    "algorithm": "先按依赖连通分量合并 cluster（边：共享 raw group_id、规范化 premise、有向 (premise, hypothesis) 指纹），再 sha256(salt + 0x1f + dataset + 0x1f + cluster_id) 取 hex 前 16 位 / 2^64；< diagnostic_fraction → diagnostic，否则 sealed_acceptance；cluster 原子",
+    "atomic_unit": "dependency cluster（连通组）；raw group_id（ocnli prem_id / anli premise_family_key / hans template / contractnli docid）原样保留审计",
+    "purposes": ["diagnostic", "sealed_acceptance"],
+    "phases": ["diagnostic", "final_acceptance"],
+    "rules": {
+      "initial_diagnosis_exposes_diagnostic_only": true,
+      "final_acceptance_evaluates_all_usable_rows": true,
+      "sealed_rows_never_used_for_iteration": true,
+      "no_row_removal_to_improve_scores": true,
+      "no_per_row_random_split": "禁止逐行随机 80/20 或按 uid 前缀伪造独立；分用途只按 cluster",
+      "cluster_atomicity": "同一 cluster 的行恒同用途；跨用途即 cluster_cross_purpose / purpose_assignment_drift 拒绝；raw group_id 不得篡改",
+      "manifest_enforcement": "所有曝光/选择/计分/完成入口只走同一权威 manifest：消费端必须用 validate_manifest 逐项复核 purposes/units/clusters/每桶实际成员与重算 purpose 一致/内容 SHA/计数后才可评测或返回行（含 select_for_phase）；预定全行集合由 manifest_scope 给（不用调用方自报子集）；最终完成由 assert_final_complete 用 manifest+完整真实 results 重新派生并与报告逐字段比对；无 manifest 的 fragment 计分旁路已删除（manifest_required）",
+      "holdout_honesty": "若合并导致巨大连通组（warnings: megacluster_majority_rows / insufficient_cluster_units_for_holdout），须如实报告；必要时整集作已见压力诊断，独立验收留给人类数据源；不丢数据、不拆漂亮 test"
+    }
+  },
+  "metrics": {
+    "primary": ["accuracy", "macro_f1"],
+    "denominators": {
+      "accuracy": "correct / scored_with_gold",
+      "coverage": "scored_with_gold / with_gold",
+      "attempt_rate": "(scored + failed) / n_total",
+      "failure_rate": "failed / n_total",
+      "truncation_rate": "truncated / n_total",
+      "note": "所有预定行都在 n_total；失败/未尝试不从分母消失；零分母记 null"
+    },
+    "exclusion_reasons": ["gold_no_consensus", "gold_missing"],
+    "excluded_rows_still_counted": true,
+    "row_removal": "forbidden",
+    "truncation": {
+      "mechanism": "finetune.truncation_profile（单一真源）",
+      "buckets": ["untruncated", "truncated"],
+      "full_text_claim_requires_zero_truncation": true,
+      "cross_window_delta_only_in_truncated_bucket": true,
+      "explicit_evidence_required": true,
+      "missing_evidence_downgrades_full_claim": true
+    },
+    "bootstrap": {
+      "engine": "research.memory_relations.metrics.cluster_bootstrap",
+      "unit": "dependency cluster（partition_records 的 units 映射；evaluate_view 按 cluster 重采样）",
+      "samples": 500,
+      "confidence": 0.95,
+      "seed": 20260919,
+      "weightings": ["row", "group_equal"]
+    },
+    "stratification": "按 datasets.<name>.stratify_by 的 metadata 键分层，只作诊断；分层差不是因果证据"
+  },
+  "admission": {
+    "mode": "evidence_report_only",
+    "decision_owner": "parent_with_independent_review",
+    "manual_evidence_review_required": true,
+    "poor_decision": {
+      "requires": ["structured_consistent_native_report", "manifest_bound_scope", "explicit_confusion_denominators", "recomputed_baseline_evidence", "cluster_bootstrap_ci"],
+      "rule": "预注册比较方向：完整选择（failed=0 且 not_attempted=0）下，accuracy 的簇自助 CI 上界严格小于最强匹配基线点估计。该比较只作描述性统计（comparison.ci_upper_below_strongest），不自动产出 poor=True；是否 poor/重训由父结合真实报告与独立复核决策（用户要求的真实评测/条件改进不缩）",
+      "forbidden": ["seven_class_probe_as_poor_evidence", "unstructured_or_inconsistent_reports", "baseline_from_other_task_or_denominator", "scalar_baseline_declaration_as_evidence", "sealed_rows_in_initial_diagnosis", "hard_row_removal", "supervision_unfair_gap_as_strong_evidence", "automatic_retrain_authorization"]
+    },
+    "retrain_admission": {
+      "requires": ["manual_evidence_review", "unique_counterexample_clusters >= min_counterexample_units", "language_matched"],
+      "note": "反例必须来自真实失败行（按记录 id 预注册、由 manifest+results 推导唯一 cluster），不接受调用方计数；归因声明只做结构登记（validated=false），科学归因由父/独立复核决策；证据不足时不重训，先补数据/对照"
+    },
+    "min_counterexample_units": 10,
+    "poor_requires_complete_selection": true,
+    "zero_observation_rule": "scored_with_gold==0（全失败/全未尝试/全缺标/零 eligible）是合法观测：admission 返回 evidence_complete=false + reasons=[no_scored_observations] + comparison=null 的不足证据 descriptor，不判 poor/重训、不当坏 payload",
+    "manual_review_rule": "任何带 manifest/results 的调用（完整/不完整/零观测一致）先按同一入口重算报告并逐字段比对（陈旧/伪造 → report_inconsistent）；权威输入缺失其一 → manifest_required/results_required；两者都缺的裸“不完整”声明只作 unverified_caller_declaration 回显，完整声明无权威输入一律拒",
+    "attribution_evidence_required": true,
+    "baseline_profiles": {
+      "majority_class": {"label_spaces": ["nli3", "entailment2"], "supervision": "gold_supervised", "derivation": "most_frequent_gold", "recipe": "同一视图已验证选择行上的最高频 gold 类命中/分母（由验证器复算，不接受调用方标量）"},
+      "chance": {"label_spaces": ["nli3", "entailment2"], "supervision": "gold_supervised", "derivation": "uniform_random_1_over_k", "recipe": "均匀随机解析值 1/类数（分母不整除类数时不强行整数分子）"},
+      "lexical_overlap": {"label_spaces": ["entailment2"], "supervision": "gold_supervised", "derivation": "per_record_predictions", "recipe": "HANS 词面重叠启发式（entailment2 专用）：实证基线必须提交逐题预测并在同一成员集复算，规则实现本身未经本协议核验"}
+    },
+    "attribution_classes": {
+      "matched_task": {"strength": "admissible", "note": "同一任务/标签空间的原生臂证据（须带 evidence/ref）"},
+      "counterexample_analysis": {"strength": "admissible", "note": "预注册反例，按真实失败行推导的唯一 cluster 计数"},
+      "simple_baseline_comparison": {"strength": "admissible", "note": "匹配任务的已登记简单基线，显式混淆分母"},
+      "supervision_unfair_gap": {"strength": "context_only", "note": "监督不对等（合成代理/AI 标签 vs 人工金标）差值只作上下文，不作强归因"}
+    },
+    "language": {
+      "production": "zh",
+      "rule": "英语-only 证据不得单独归因中文生产失败；language_matched=false 时只能报子能力信号，不进生产归因"
+    }
+  },
+  "forbidden": {
+    "label_mappings": [["neutral", "uncertain"], ["entailment", "duplicate"], ["non-entailment", "conflict"]],
+    "any_seven_to_nli_mapping": true,
+    "practices": [
+      "把七类 argmax/概率当作 NLI 预测或三分类准确率",
+      "把七类诊断结果称作错误放行/风险/认证/放心",
+      "以截断窗口结果声称全文（full document）",
+      "以删难题/过滤行/改分母改善成绩",
+      "用封存验收行做初诊迭代",
+      "把 supervision-unfair 差值当强归因",
+      "把 metadata/gold/provenance 传入学生输入",
+      "把 HANS 行用于训练",
+      "对公开基准结果作生产安全/风险证书表述",
+      "在公开 NLI 上引入第二套门或替代 metrics.pair_verdict"
+    ]
+  },
+  "native_model_incompatibilities": [
+    {"dataset": "ocnli", "target_view": "ocnli_nli3_native", "reason": "七类模型的输入是记忆规则对、标签是七类语义关系；与 premise/hypothesis NLI 无诚实映射（entailment≠duplicate、neutral≠uncertain、conflict 仍需同条件/无更新证据）；不得产三分类准确率，只允许任务不兼容探针"},
+    {"dataset": "anli", "target_view": "anli_nli3_native", "reason": "同 ocnli；长 premise/多 round 还要单独记录截断与分层，不能把混合桶当单一数字"},
+    {"dataset": "hans", "target_view": "hans_entailment2_native", "reason": "HANS 只有 entailment2，需要原生 NLI 参考臂才有正式准确率；non-entailment≠contradiction；七类只辅助诊断"},
+    {"dataset": "contractnli", "target_view": "contractnli_nli3_full_document", "reason": "合同文档级 premise 与七类规则对任务不同；full_document 与 oracle 两层都需原生臂；七类只作外部探针，不得合并数字"}
+  ],
+  "interfaces": {
+    "module": "research.memory_relations.public_benchmarks.protocol",
+    "record_fields": ["id", "dataset", "official_split", "task", "premise", "hypothesis", "gold_label", "group_id", "metadata", "evidence"],
+    "api": {
+      "validate_record": "(record, catalog=None) -> None；失败抛 ContractError.code",
+      "validate_record_for_dataset": "(record, study=None, catalog=None) -> None",
+      "canonical_gold_label": "(dataset, original_label, catalog=None) -> str；catalog=运行时 label_map（sources.json），缺省用冻结快照",
+      "check_label_catalog": "(catalog) -> None；运行时映射与冻结快照 parity，漂移抛 label_map_drift",
+      "premise_family_key": "(premise) -> str",
+      "oracle_available": "(record) -> bool；gold 证据跨度可用性（缺失只计数不删行）",
+      "oracle_eligible": "(record) -> bool；E/C 条件 oracle 资格（gold ∈ {entailment, contradiction} 且有跨度）",
+      "oracle_premise": "(record) -> str；oracle 层受控取用 metadata.spans（缺失 fail loud）",
+      "load_study": "(path=None, verify_freeze=True) -> dict",
+      "validate_study": "(study, strict_mirror=True) -> None",
+      "cluster_records": "(records, study=None) -> clusters；依赖连通分量（cluster_id/rows/record_ids/raw_units）",
+      "assign_purpose": "(study, dataset, cluster_id) -> purpose；入参是 cluster id，不是单行 group_id",
+      "partition_records": "(records, study=None) -> {diagnostic, sealed_acceptance, purposes, units, clusters, summary, sha256}",
+      "validate_manifest": "(manifest, study=None) -> 核验过的 manifest；重算 purposes/units/clusters/每桶实际成员与用途一致/内容 SHA/计数，漂移抛 manifest_*_mismatch（含 manifest_bucket_mismatch）",
+      "manifest_scope": "(manifest, view_id, phase, study=None) -> {ids, accounting, record_ids_sha256}；预定全行集合与 oracle 记账的唯一来源（eligible/真 neutral/无跨度/missing/no_consensus 分列 + n_official 守恒）",
+      "select_for_phase": "(partitioned, phase) -> records；返回任何行前先 validate_manifest（曝光入口同一验证）",
+      "check_leakage": "(partitioned, study=None) -> report；= validate_manifest 执法 + 合并/碰撞计数",
+      "view_spec": "(study, view_id) -> dict",
+      "view_label_space": "(view) -> tuple；原生任务或条件任务（entailment_contradiction）的标签空间",
+      "native_view_binding": "(view, artifact, weights_path=None, study=None) -> {runnable, metadata_check, artifact_integrity, ...}；工件 meta 投影（schema/kind/类序/标签空间/主向/槽位/input_recipe/窗口/weights_sha256/骨干指纹）逐项比对冻结 native_reference；weights_path 给定时核验文件 SHA256；注册比对与完整性分开报告",
+      "diagnostic_request": "(record, direction=hypothesis_as_candidate) -> request dict",
+      "external_contradiction_diagnostic": "(probs_by_direction, gold_labels, units, strata=None, study=None, samples=None, confidence=None, seed=None) -> report；simplex 校验、监督 AUC 只吃有 gold 行",
+      "evaluate_view": "(records, results, study=None, view_id, phase, manifest=None, purposes=None, units=None) -> report；manifest 绑定是唯一入口（records 可省略、给了逐字节核对 record_drift）；无 manifest 一律 manifest_required（fragment 旁路已删除）",
+      "assert_final_complete": "(report, manifest, results, study=None) -> None；由权威 manifest+完整真实 results 重新派生并与报告逐字段比对后才算完成",
+      "admission_check": "(study, view_id, view_report, baselines, counterexample_units, attribution_classes, language_matched, phase, manifest=None, results=None) -> 证据报告；任何带 manifest/results 的调用先重算并逐字段比对（陈旧/伪造 → report_inconsistent）；evidence_complete + manual_evidence_review_required + comparison（可复算基线与严格方向描述性统计）；不自动 poor/重训；不完整选择 incomplete_selection、零 scored_with_gold 返回 no_scored_observations 不足证据 descriptor（comparison=null），裸不完整声明标注 unverified_caller_declaration"
+    },
+    "consumers": {
+      "datasets.py": "按本记录合同规范化；可使用 canonical_gold_label/premise_family_key/validate_record；只读消费，不反向 import 生产模块",
+      "evaluate.py": "消费 load_study/视图/分区/诊断/指标合同；不得引入第二套门；不得把七类当 NLI 预测"
+    }
+  }
+}

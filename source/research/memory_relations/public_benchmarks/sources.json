@@ -1,0 +1,265 @@
+{
+  "schema_version": 1,
+  "default_run": "v4-public-data-20261012",
+  "limits": {
+    "timeout_seconds": 180,
+    "attempts": 3,
+    "retry_backoff_seconds": 2.0,
+    "max_entries": 20000,
+    "max_entry_bytes": 268435456,
+    "max_total_uncompressed_bytes": 805306368,
+    "min_free_bytes": 2147483648
+  },
+  "datasets": {
+    "ocnli": {
+      "title": "OCNLI (Original Chinese Natural Language Inference)",
+      "home": "https://github.com/CLUEbenchmark/OCNLI",
+      "revision": "b53efdee17257a5c33993cf6fcf8ffff0497ea0e",
+      "license": {
+        "name": "CC BY-NC 2.0",
+        "url": "https://github.com/CLUEbenchmark/OCNLI#license"
+      },
+      "task": "nli3",
+      "allowed_hosts": ["raw.githubusercontent.com"],
+      "label_map": {
+        "entailment": "entailment",
+        "neutral": "neutral",
+        "contradiction": "contradiction",
+        "-": null
+      },
+      "group_id": {"kind": "field", "field": "prem_id", "fallback": "premise_family_key"},
+      "unit_key": "prem_id",
+      "files": [
+        {
+          "role": "dev",
+          "kind": "direct",
+          "url": "https://raw.githubusercontent.com/CLUEbenchmark/OCNLI/b53efdee17257a5c33993cf6fcf8ffff0497ea0e/data/ocnli/dev.json",
+          "dest": "raw/ocnli/dev.json",
+          "sha256": "001ded235d73a18dac68a45a38cd5f9b3f9311fa4246df623e199422c073ddc5",
+          "max_bytes": 5242880,
+          "expect": "jsonl"
+        },
+        {
+          "role": "test",
+          "kind": "direct",
+          "url": "https://raw.githubusercontent.com/CLUEbenchmark/OCNLI/b53efdee17257a5c33993cf6fcf8ffff0497ea0e/data/ocnli/test.json",
+          "dest": "raw/ocnli/test.json",
+          "sha256": "5fb387fd5188ea7de7c13dda0c56d44fba50d526a126a7926a5e5d131fde86bb",
+          "max_bytes": 5242880,
+          "expect": "jsonl"
+        },
+        {
+          "role": "train50k",
+          "kind": "direct",
+          "url": "https://raw.githubusercontent.com/CLUEbenchmark/OCNLI/b53efdee17257a5c33993cf6fcf8ffff0497ea0e/data/ocnli/train.50k.json",
+          "dest": "raw/ocnli/train.50k.json",
+          "sha256": "cb47a6c00105bfb49bbb791dd537b284d3138f9f1ad5cd1e187afc470ff004e0",
+          "max_bytes": 20971520,
+          "expect": "jsonl"
+        }
+      ],
+      "splits": {
+        "dev": {"official_split": "dev", "format": "ocnli_jsonl", "file_role": "dev"},
+        "test": {"official_split": "test", "format": "ocnli_jsonl", "file_role": "test"},
+        "train.50k": {"official_split": "train.50k", "format": "ocnli_jsonl", "file_role": "train50k"}
+      },
+      "notes": "官方 dev/test 各 3000 行、train.50k 50486 行；test 整场无 label 键（无公开 gold）→ gold_label=null、gold_status=missing，单列保留不缩样。**gold_status 按实际有效票**（label0..label4 中仅 entailment/neutral/contradiction 计有效；官方票原值还含 null/unknown/unrelated，全部原样保留于 metadata.votes）：label=\"-\" → no_consensus（dev 50 / train 49，五票原值保留）；有 gold 且有效票 ≥2 且**有效票对官方 gold 严格过半**（2×同意票 > 有效票；同意票=与官方 gold 相同的有效票）→ majority（dev 2950 / train 3858）；有效票 ≥2 但无严格多数 → single（label_method=no_majority，实测 0 行）；有效票 0..1 → single（train 46579，官方只有单人标注无复核票，不称五人多数）；label_method 同步 majority_vote/no_majority/single_annotation。**官方缺 prem_id 一律保留 null，不填派生值冒充原单位**：test 3000 行无 prem_id；train.50k 另有 3 行有 gold 但 prem_id=null（raw 行 47995/47998/48002，顶层 id 47994/47997/48001，label=neutral）——这 3003 行 group_id=premise_family_key(premise) 派生、metadata.group_id_source=\"derived_premise_family\" 显式声明（其余行 raw），gold 行不删不改。train.3k/train.10k/train.30k 是 50k 子集，按需后续经本机制补取（同 revision），本轮不下载。"
+    },
+    "anli": {
+      "title": "ANLI v1.0 (Adversarial NLI, rounds 1-3)",
+      "home": "https://github.com/facebookresearch/anli",
+      "revision": "b5ce27af54a53bd495af7260fdc485000eed15f8",
+      "license": {
+        "name": "CC BY-NC 4.0",
+        "url": "https://github.com/facebookresearch/anli/blob/main/LICENSE"
+      },
+      "task": "nli3",
+      "allowed_hosts": ["dl.fbaipublicfiles.com", "raw.githubusercontent.com"],
+      "label_map": {"e": "entailment", "n": "neutral", "c": "contradiction"},
+      "group_id": {"kind": "premise_family_key"},
+      "unit_key": "premise_hash",
+      "joins": [
+        {
+          "role": "verifier_labels",
+          "format": "jsonl_keyed",
+          "key_field": "uid",
+          "value_field": "verifier labels",
+          "metadata_key": "verifier_labels"
+        }
+      ],
+      "files": [
+        {
+          "role": "archive",
+          "kind": "archive",
+          "url": "https://dl.fbaipublicfiles.com/anli/anli_v1.0.zip",
+          "dest": "raw/anli/anli_v1.0.zip",
+          "sha256": "e5c058f2bb4e6190b0651badca2c590e45db95248f8b28cde674615ee40820bf",
+          "max_bytes": 26214400,
+          "expect": "zip",
+          "observed": {
+            "content_length": 18708061,
+            "last_modified": "Tue, 30 Jun 2020 21:56:09 GMT",
+            "etag": "\"b263a29c051981334f287bc1dea34188-2\""
+          },
+          "extract": {
+            "root": "raw-extracted/anli",
+            "entries": [
+              "anli_v1.0/R1/train.jsonl",
+              "anli_v1.0/R1/dev.jsonl",
+              "anli_v1.0/R1/test.jsonl",
+              "anli_v1.0/R2/train.jsonl",
+              "anli_v1.0/R2/dev.jsonl",
+              "anli_v1.0/R2/test.jsonl",
+              "anli_v1.0/R3/train.jsonl",
+              "anli_v1.0/R3/dev.jsonl",
+              "anli_v1.0/R3/test.jsonl",
+              "anli_v1.0/README.txt"
+            ]
+          }
+        },
+        {
+          "role": "verifier_labels",
+          "kind": "direct",
+          "url": "https://raw.githubusercontent.com/facebookresearch/anli/b5ce27af54a53bd495af7260fdc485000eed15f8/verifier_labels/verifier_labels_R1-3.jsonl",
+          "dest": "raw/anli/verifier_labels_R1-3.jsonl",
+          "sha256": "6d1c595d4a2860c158aac1e6b5b116355c13eeeb96de6af05675097a3aa2a9eb",
+          "max_bytes": 5242880,
+          "expect": "jsonl"
+        }
+      ],
+      "splits": {
+        "R1/train": {"official_split": "R1/train", "format": "anli_jsonl", "entry": "anli_v1.0/R1/train.jsonl"},
+        "R1/dev": {"official_split": "R1/dev", "format": "anli_jsonl", "entry": "anli_v1.0/R1/dev.jsonl"},
+        "R1/test": {"official_split": "R1/test", "format": "anli_jsonl", "entry": "anli_v1.0/R1/test.jsonl"},
+        "R2/train": {"official_split": "R2/train", "format": "anli_jsonl", "entry": "anli_v1.0/R2/train.jsonl"},
+        "R2/dev": {"official_split": "R2/dev", "format": "anli_jsonl", "entry": "anli_v1.0/R2/dev.jsonl"},
+        "R2/test": {"official_split": "R2/test", "format": "anli_jsonl", "entry": "anli_v1.0/R2/test.jsonl"},
+        "R3/train": {"official_split": "R3/train", "format": "anli_jsonl", "entry": "anli_v1.0/R3/train.jsonl"},
+        "R3/dev": {"official_split": "R3/dev", "format": "anli_jsonl", "entry": "anli_v1.0/R3/dev.jsonl"},
+        "R3/test": {"official_split": "R3/test", "format": "anli_jsonl", "entry": "anli_v1.0/R3/test.jsonl"}
+      },
+      "notes": "zip 内 R1/R2/R3 各 train/dev/test 九分区；R1-R3 test 官方带标签（README.txt 明示，报告须注明不得调参）。原标签为单字符 e/n/c（官方 README id2label 0/1/2），规范映射 entailment/neutral/contradiction，原字符留 metadata.original_label；unknown 原标签 fail loud。verifier_labels_R1-3.jsonl（2022-05-11 追加复核标注，29803 条，仅含≥1 复核意见的样本）按 uid join：**gold_status 按实际票**——n_agree（复核票中等于 gold 的票数）≥2 → adjudicated（官方 dev/test「≥2 位复核者同意」准则；实测 R1/R2/R3 dev+test 全部行达到 1000/1000/1000/1000/1200/1200，R1/R2/R3 train 3093/5564/14708，合计 29765/29803 条复核记录），n_agree<2（1 票同意 37 行、0 票同意 1 行）或无复核票 → single（label_method=writer_only，verifier_agree_count 如实记录；不因复核不足改官方 gold、不删行）；复核票原样进 metadata.verifier_labels（并列/多数不同不改原 gold）。group_id/unit 均为 premise_family_key（NFKC+空白折叠+sha256 前 16 位，逐式镜像 protocol.py，不用 uid 前缀），group_id_source=derived_premise_family（ANLI 官方无单位字段）。"
+    },
+    "hans": {
+      "title": "HANS (Heuristic Analysis for NLI Systems)",
+      "home": "https://github.com/tommccoy1/hans",
+      "revision": "7299f6f657089ce06a0f98e7e81f8d0f5b7741ce",
+      "license": {
+        "name": "MIT",
+        "url": "https://github.com/tommccoy1/hans/blob/master/LICENSE.md"
+      },
+      "task": "entailment2",
+      "allowed_hosts": ["raw.githubusercontent.com"],
+      "label_map": {
+        "entailment": "entailment",
+        "non-entailment": "non-entailment"
+      },
+      "group_id": {"kind": "field", "field": "template"},
+      "unit_key": "template",
+      "files": [
+        {
+          "role": "evaluation",
+          "kind": "direct",
+          "url": "https://raw.githubusercontent.com/tommccoy1/hans/7299f6f657089ce06a0f98e7e81f8d0f5b7741ce/heuristics_evaluation_set.txt",
+          "dest": "raw/hans/heuristics_evaluation_set.txt",
+          "sha256": "c55b62feef9913070e88f38938dc2492018c945ac81f70139346472494124e79",
+          "max_bytes": 20971520,
+          "expect": "text"
+        },
+        {
+          "role": "evaluation_jsonl",
+          "kind": "direct",
+          "url": "https://raw.githubusercontent.com/tommccoy1/hans/7299f6f657089ce06a0f98e7e81f8d0f5b7741ce/heuristics_evaluation_set.jsonl",
+          "dest": "raw/hans/heuristics_evaluation_set.jsonl",
+          "sha256": "15f2dbc5439d15138d8e7af6a10b202a421a5e0632e7fd4e0126b4295a6bafce",
+          "max_bytes": 31457280,
+          "expect": "jsonl"
+        },
+        {
+          "role": "train",
+          "kind": "direct",
+          "url": "https://raw.githubusercontent.com/tommccoy1/hans/7299f6f657089ce06a0f98e7e81f8d0f5b7741ce/heuristics_train_set.txt",
+          "dest": "raw/hans/heuristics_train_set.txt",
+          "sha256": "49245bd5fdb0b185dcbfbf48f0f16513c62ad5bc9fad0b8800dc48d6818ee5cf",
+          "max_bytes": 20971520,
+          "expect": "text"
+        },
+        {
+          "role": "train_jsonl",
+          "kind": "direct",
+          "url": "https://raw.githubusercontent.com/tommccoy1/hans/7299f6f657089ce06a0f98e7e81f8d0f5b7741ce/heuristics_train_set.jsonl",
+          "dest": "raw/hans/heuristics_train_set.jsonl",
+          "sha256": "440040b6790c6359b56496375b87e6cedfa13a20f52bc3223dad31bd28b77faf",
+          "max_bytes": 31457280,
+          "expect": "jsonl"
+        }
+      ],
+      "splits": {
+        "evaluation": {
+          "official_split": "evaluation",
+          "format": "hans_tsv",
+          "file_role": "evaluation",
+          "crosscheck_role": "evaluation_jsonl"
+        },
+        "train": {
+          "official_split": "train",
+          "format": "hans_tsv",
+          "file_role": "train",
+          "crosscheck_role": "train_jsonl"
+        }
+      },
+      "notes": "评测集 30000 行（30 subcase × 1000），train 30000 行。标签空间 entailment/non-entailment 原样保留——禁止把 non-entailment 当 contradiction（config 校验强制 label_map 值属于 task=entailment2 标签空间）。**标签来源为模板规则生成（官方无人工投票/裁决）**：gold_status=generated、metadata.label_method=template_rule（不得记 adjudicated/majority）。每个 .txt 的官方 .jsonl 副本作为 crosscheck：按 pairID→标签全表比对，防单文件静默损坏。sentence1/sentence2 归一为 premise/hypothesis；两个 parse 列不进 normalized（raw 原件完整保留，manifest 记 omitted_fields）。unit=template 家族（group_id_source=raw）。"
+    },
+    "contractnli": {
+      "title": "ContractNLI",
+      "home": "https://stanfordnlp.github.io/contract-nli/",
+      "revision": "eced6528dd3c1d14d73f9a87df8f7bdbc03126f9",
+      "license": {
+        "name": "CC BY 4.0",
+        "url": "https://stanfordnlp.github.io/contract-nli/LICENSE"
+      },
+      "task": "nli3",
+      "allowed_hosts": ["stanfordnlp.github.io"],
+      "label_map": {
+        "Entailment": "entailment",
+        "Contradiction": "contradiction",
+        "NotMentioned": "neutral"
+      },
+      "group_id": {"kind": "field", "field": "doc_id"},
+      "unit_key": "doc_id",
+      "expect_hypotheses": 17,
+      "files": [
+        {
+          "role": "archive",
+          "kind": "archive",
+          "url": "https://stanfordnlp.github.io/contract-nli/resources/contract-nli.zip",
+          "dest": "raw/contractnli/contract-nli.zip",
+          "sha256": "e03fc77bbf8b53e2976a250e81d8a294bc3d5e5fb014521e477dee9340d6287b",
+          "max_bytes": 73400320,
+          "expect": "zip",
+          "observed": {
+            "content_length": 65362913,
+            "last_modified": "Fri, 11 Feb 2022 23:16:51 GMT"
+          },
+          "extract": {
+            "root": "raw-extracted/contractnli",
+            "entries": [
+              "contract-nli/train.json",
+              "contract-nli/dev.json",
+              "contract-nli/test.json",
+              "contract-nli/LICENSE",
+              "contract-nli/README.md",
+              "contract-nli/TERMS"
+            ]
+          }
+        }
+      ],
+      "splits": {
+        "train": {"official_split": "train", "format": "contractnli_json", "entry": "contract-nli/train.json"},
+        "dev": {"official_split": "dev", "format": "contractnli_json", "entry": "contract-nli/dev.json"},
+        "test": {"official_split": "test", "format": "contractnli_json", "entry": "contract-nli/test.json"}
+      },
+      "notes": "官方 documents[*].annotation_sets[0].annotations 覆盖全部 17 条命题（官方 id 为 nda-1…nda-20 之间的 17 个，含间断：nda-6/nda-9/nda-14 未发布；按数量 17 校验而非硬编码 id），choice ∈ {Entailment, Contradiction, NotMentioned}；NotMentioned 规范到 nli3 的 neutral（该任务第三类），original_label=NotMentioned 逐字保留，绝不是七类 uncertain、不得当 contradiction。官方 README 明示每文档单一标注 → gold_status=single（label_method=single_annotation）。证据跨度 metadata.spans=[{text,start,end}]（text=合同原文子串，start/end=doc.spans 字符区间；oracle 视图受控取用），不进 evidence；越界索引/非整型或倒置区间 fail-closed。**官方 doc.spans 表内共 737 处纯空白跨度（train 536 / dev 63 / test 138），其中被标注引用 1 处**（dev doc 582 的 nda-19 span 68，区间 (13736,13737) 为单个空格）：消费方合同要求 spans.text 非空，故跳过该**被引用的**空白跨度、逐分区计入 counts.spans_skipped_whitespace（该行另有 5 个实质跨度，gold 与其余证据完整保留；不删行、不改标注、不动未被引用者）。premise=合同全文（每 doc 17 条记录），unit=doc_id（字符串化整数，group_id_source=raw）。zip 内 raw/ 原始合同文件不进解包白名单（原件 zip 完整保留），不执行任何下载内容。站点资源无提交绑定，版本以 sha256+Content-Length/Last-Modified 观察值钉定；revision 为同日期的仓库 HEAD 观察值。"
+    }
+  }
+}

@@ -1,0 +1,2 @@
+{"id":"pair-a","pair":{"frame":{"mode":"same_domain","background":""},"old":{"kind":"memory","text":"回答使用中文。"},"new":{"kind":"memory","text":"回答使用英文。"}}}
+{"id":"pair-b","pair":{"frame":{"mode":"same_domain","background":""},"old":{"kind":"memory","text":"回答使用中文。"},"new":{"kind":"memory","text":"公式使用LaTeX。"}}}

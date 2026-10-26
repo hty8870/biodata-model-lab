@@ -1,0 +1,370 @@
+{
+  "publication_date": "2026-10-27",
+  "python": "3.12.13",
+  "torch": "2.11.0+cu128",
+  "transformers": "4.57.6",
+  "peft": "0.21.0",
+  "source_projection_files_verified": 3822,
+  "python_files_syntax_checked": 962,
+  "weight_export": "All exported neural tensors compared to source values; adapters and serialized estimators byte-verified separately. See catalog per format.",
+  "representative_runtime": {
+    "device": "cpu",
+    "dtype": "float32",
+    "threads": 2,
+    "models": {
+      "ltr-active": {
+        "samples": 2,
+        "max_absolute_score_or_probability_difference": 0.0,
+        "archive_loaded": true,
+        "original_architecture_compared": true,
+        "public_predictions": [
+          {
+            "id": "candidate-a",
+            "score": -8.559775352478027
+          },
+          {
+            "id": "candidate-b",
+            "score": -54.05672836303711
+          }
+        ]
+      },
+      "memory-five-last-deployed": {
+        "samples": 2,
+        "max_absolute_score_or_probability_difference": 0.0,
+        "archive_loaded": true,
+        "original_architecture_compared": true,
+        "public_predictions": [
+          {
+            "id": "pair-a",
+            "classes": [
+              "equivalent",
+              "old_entails_new_strict",
+              "new_entails_old_strict",
+              "disjoint",
+              "overlap_incomparable"
+            ],
+            "probabilities": [
+              0.17270417511463165,
+              0.13357065618038177,
+              0.1285078227519989,
+              0.4408053159713745,
+              0.12441205233335495
+            ],
+            "prediction": "disjoint",
+            "score_kind": "softmax_uncalibrated_unless_explicit_temperature"
+          },
+          {
+            "id": "pair-b",
+            "classes": [
+              "equivalent",
+              "old_entails_new_strict",
+              "new_entails_old_strict",
+              "disjoint",
+              "overlap_incomparable"
+            ],
+            "probabilities": [
+              0.18019121885299683,
+              0.13772012293338776,
+              0.12583036720752716,
+              0.43501290678977966,
+              0.12124540656805038
+            ],
+            "prediction": "disjoint",
+            "score_kind": "softmax_uncalibrated_unless_explicit_temperature"
+          }
+        ]
+      },
+      "memory-r2-seed13-terminal": {
+        "samples": 2,
+        "max_absolute_score_or_probability_difference": 0.0,
+        "archive_loaded": true,
+        "original_architecture_compared": true,
+        "public_predictions": [
+          {
+            "id": "pair-a",
+            "classes": [
+              "equivalent",
+              "compatible",
+              "conflict"
+            ],
+            "probabilities": [
+              0.00029212384833954275,
+              0.9749826192855835,
+              0.02472533844411373
+            ],
+            "prediction": "compatible",
+            "score_kind": "softmax_uncalibrated_unless_explicit_temperature"
+          },
+          {
+            "id": "pair-b",
+            "classes": [
+              "equivalent",
+              "compatible",
+              "conflict"
+            ],
+            "probabilities": [
+              0.00014574601664207876,
+              0.9998406171798706,
+              1.3535525795305148e-05
+            ],
+            "prediction": "compatible",
+            "score_kind": "softmax_uncalibrated_unless_explicit_temperature"
+          }
+        ]
+      }
+    },
+    "prepared_inputs": [
+      {
+        "path": "datasets/semantic-text/early/dev.jsonl",
+        "rows": 13202,
+        "changed_fields": {}
+      },
+      {
+        "path": "datasets/semantic-text/early/train.jsonl",
+        "rows": 118186,
+        "changed_fields": {}
+      },
+      {
+        "path": "datasets/semantic-text/tree/dev.jsonl",
+        "rows": 13202,
+        "changed_fields": {}
+      },
+      {
+        "path": "datasets/semantic-text/tree/train.jsonl",
+        "rows": 118186,
+        "changed_fields": {}
+      }
+    ]
+  },
+  "primary_table_recomputed": {
+    "r2_seed13": {
+      "n": 432,
+      "n_with_gold": 432,
+      "missing_or_outside_label_gold": 0,
+      "invalid_predictions": 0,
+      "correct": 410,
+      "accuracy": 0.9490740740740741,
+      "macro_f1": 0.948903054066669,
+      "per_class": {
+        "equivalent": {
+          "tp": 144,
+          "fp": 13,
+          "fn": 0,
+          "support": 144,
+          "precision": 0.9171974522292994,
+          "recall": 1.0,
+          "f1": 0.9568106312292359
+        },
+        "compatible": {
+          "tp": 134,
+          "fp": 6,
+          "fn": 10,
+          "support": 144,
+          "precision": 0.9571428571428572,
+          "recall": 0.9305555555555556,
+          "f1": 0.9436619718309859
+        },
+        "conflict": {
+          "tp": 132,
+          "fp": 3,
+          "fn": 12,
+          "support": 144,
+          "precision": 0.9777777777777777,
+          "recall": 0.9166666666666666,
+          "f1": 0.946236559139785
+        }
+      },
+      "confusion": {
+        "equivalent": {
+          "equivalent": 144,
+          "compatible": 0,
+          "conflict": 0
+        },
+        "compatible": {
+          "equivalent": 7,
+          "compatible": 134,
+          "conflict": 3
+        },
+        "conflict": {
+          "equivalent": 6,
+          "compatible": 6,
+          "conflict": 132
+        }
+      }
+    },
+    "r2_seed42": {
+      "n": 432,
+      "n_with_gold": 432,
+      "missing_or_outside_label_gold": 0,
+      "invalid_predictions": 0,
+      "correct": 418,
+      "accuracy": 0.9675925925925926,
+      "macro_f1": 0.9674662847595178,
+      "per_class": {
+        "equivalent": {
+          "tp": 144,
+          "fp": 6,
+          "fn": 0,
+          "support": 144,
+          "precision": 0.96,
+          "recall": 1.0,
+          "f1": 0.9795918367346939
+        },
+        "compatible": {
+          "tp": 136,
+          "fp": 5,
+          "fn": 8,
+          "support": 144,
+          "precision": 0.9645390070921985,
+          "recall": 0.9444444444444444,
+          "f1": 0.9543859649122807
+        },
+        "conflict": {
+          "tp": 138,
+          "fp": 3,
+          "fn": 6,
+          "support": 144,
+          "precision": 0.9787234042553191,
+          "recall": 0.9583333333333334,
+          "f1": 0.968421052631579
+        }
+      },
+      "confusion": {
+        "equivalent": {
+          "equivalent": 144,
+          "compatible": 0,
+          "conflict": 0
+        },
+        "compatible": {
+          "equivalent": 5,
+          "compatible": 136,
+          "conflict": 3
+        },
+        "conflict": {
+          "equivalent": 1,
+          "compatible": 5,
+          "conflict": 138
+        }
+      }
+    },
+    "llm_single": {
+      "n": 432,
+      "n_with_gold": 432,
+      "missing_or_outside_label_gold": 0,
+      "invalid_predictions": 0,
+      "correct": 408,
+      "accuracy": 0.9444444444444444,
+      "macro_f1": 0.9433789372867315,
+      "per_class": {
+        "equivalent": {
+          "tp": 144,
+          "fp": 5,
+          "fn": 0,
+          "support": 144,
+          "precision": 0.9664429530201343,
+          "recall": 1.0,
+          "f1": 0.9829351535836177
+        },
+        "compatible": {
+          "tp": 120,
+          "fp": 0,
+          "fn": 24,
+          "support": 144,
+          "precision": 1.0,
+          "recall": 0.8333333333333334,
+          "f1": 0.9090909090909091
+        },
+        "conflict": {
+          "tp": 144,
+          "fp": 19,
+          "fn": 0,
+          "support": 144,
+          "precision": 0.8834355828220859,
+          "recall": 1.0,
+          "f1": 0.9381107491856677
+        }
+      },
+      "confusion": {
+        "equivalent": {
+          "equivalent": 144,
+          "compatible": 0,
+          "conflict": 0
+        },
+        "compatible": {
+          "equivalent": 5,
+          "compatible": 120,
+          "conflict": 19
+        },
+        "conflict": {
+          "equivalent": 0,
+          "compatible": 0,
+          "conflict": 144
+        }
+      }
+    },
+    "llm_batch8_clean": {
+      "n": 432,
+      "n_with_gold": 432,
+      "missing_or_outside_label_gold": 0,
+      "invalid_predictions": 0,
+      "correct": 423,
+      "accuracy": 0.9791666666666666,
+      "macro_f1": 0.9790613978473458,
+      "per_class": {
+        "equivalent": {
+          "tp": 144,
+          "fp": 2,
+          "fn": 0,
+          "support": 144,
+          "precision": 0.9863013698630136,
+          "recall": 1.0,
+          "f1": 0.993103448275862
+        },
+        "compatible": {
+          "tp": 136,
+          "fp": 1,
+          "fn": 8,
+          "support": 144,
+          "precision": 0.9927007299270073,
+          "recall": 0.9444444444444444,
+          "f1": 0.9679715302491103
+        },
+        "conflict": {
+          "tp": 143,
+          "fp": 6,
+          "fn": 1,
+          "support": 144,
+          "precision": 0.959731543624161,
+          "recall": 0.9930555555555556,
+          "f1": 0.9761092150170648
+        }
+      },
+      "confusion": {
+        "equivalent": {
+          "equivalent": 144,
+          "compatible": 0,
+          "conflict": 0
+        },
+        "compatible": {
+          "equivalent": 2,
+          "compatible": 136,
+          "conflict": 6
+        },
+        "conflict": {
+          "equivalent": 0,
+          "compatible": 1,
+          "conflict": 143
+        }
+      }
+    }
+  },
+  "not_rerun": [
+    "all historical training jobs",
+    "all historical inference matrices",
+    "Qwen3.5 optional stack",
+    "paid teacher labeling",
+    "production deployment"
+  ],
+  "privacy_scan": "Source content, decoded Python literals, JSON metadata and tensor headers checked before publication; no credentials, private host identifiers or owner paths intentionally published. Hashes and relative provenance retained.",
+  "scope": "Packaging and representative inference fidelity, not a new quality claim, risk certification or whole-product full gate."
+}
